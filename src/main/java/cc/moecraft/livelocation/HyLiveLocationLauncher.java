@@ -5,6 +5,7 @@ import cc.moecraft.utils.cli.Args;
 import cc.moecraft.utils.cli.ArgsUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import lombok.Getter;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -26,6 +27,9 @@ import static java.lang.Integer.parseInt;
  */
 public class HyLiveLocationLauncher
 {
+    @Getter
+    private static HyLiveLocationServer server;
+
     public static void main(String[] argsString) throws Exception
     {
         Args args = ArgsUtils.parse(argsString);
@@ -93,7 +97,7 @@ public class HyLiveLocationLauncher
         if (dbPwd == null) return "Database password is undefined";
 
         // 初始化服务器
-        HyLiveLocationServer server = new HyLiveLocationServer(new HLLConfig(port, password, debug, dbUrl, dbUsr, dbPwd));
+        server = new HyLiveLocationServer(new HLLConfig(port, password, debug, dbUrl, dbUsr, dbPwd));
 
         // 启动服务器
         if (operation.equals("start"))
