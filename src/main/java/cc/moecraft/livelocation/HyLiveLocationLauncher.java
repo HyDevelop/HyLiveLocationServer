@@ -46,6 +46,9 @@ public class HyLiveLocationLauncher
         String password = options.getOrDefault("password", null);
         int port = parseInt(options.getOrDefault("port", "19486"));
         boolean debug = parseBoolean(options.getOrDefault("debug", "false"));
+        String dbUrl = options.getOrDefault("db-url", null);
+        String dbUsr = options.getOrDefault("db-usr", null);
+        String dbPwd = options.getOrDefault("db-pwd", null);
 
         // 从文件读取配置
         boolean hasFile = options.containsKey("file");
@@ -58,7 +61,12 @@ public class HyLiveLocationLauncher
             // 导出到文件
             try (Writer writer = new FileWriter(new File(options.get("file"))))
             {
-                new Gson().toJson(new HLLConfig(port, password == null ? "defaultpw" : password, debug), writer);
+                if (password == null) password = "default-pw";
+                if (dbUrl == null) dbUrl = "jdbc:mysql://localhost/my_database?serverTimezone=UTC ";
+                if (dbUsr == null) dbUsr = "root";
+                if (dbPwd == null) dbPwd = "default-pw";
+
+                new Gson().toJson(new HLLConfig(port, password, debug, dbUrl, dbUsr, dbPwd), writer);
                 return "Export Success!";
             }
         }
@@ -71,13 +79,19 @@ public class HyLiveLocationLauncher
             password = config.getPassword();
             port = config.getPort();
             debug = config.isDebug();
+            dbUrl = config.getDbUrl();
+            dbUsr = config.getDbUsr();
+            dbPwd = config.getDbPwd();
         }
 
         // 检查是否定义了密码
         if (password == null) return "Password is undefined";
+        if (dbUrl == null) return "Database URL is undefined";
+        if (dbUsr == null) return "Database user is undefined";
+        if (dbPwd == null) return "Database password is undefined";
 
         // 初始化服务器
-        HyLiveLocationServer server = new HyLiveLocationServer(new HLLConfig(port, password, debug));
+        HyLiveLocationServer server = new HyLiveLocationServer(new HLLConfig(port, password, debug, dbUrl, dbUsr, dbPwd));
 
         // 启动服务器
         if (operation.equals("start"))
