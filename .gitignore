@@ -2,3 +2,4 @@
 .idea/*
 HyLiveLocationServer.iml
 target/*
+logs/*
