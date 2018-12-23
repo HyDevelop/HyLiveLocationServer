@@ -71,6 +71,10 @@ public class ApiHandler extends AbstractHandler
                 ResponseUtils.writeResponse(response, "Unpredicted Error: " + e.getMessage());
             }
         }
+        else
+        {
+            ResponseUtils.writeResponse(response, "What is the meaning of life");
+        }
     }
 
     @Override
