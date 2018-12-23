@@ -17,3 +17,7 @@ Where options include:
     -password=<string>      Password
     -port=<int>             Port
     -debug=<boolean>        Debug mode (Additional logging messages)
+
+    -db-url=<url>           URL for JDBC connection. (e.g. jdbc="jdbc:mysql://localhost/my_database?serverTimezone=UTC ")
+    -db-usr=<string>        Username for JDBC connection.
+    -db-pwd=<string>        Password for JDBC connection.
