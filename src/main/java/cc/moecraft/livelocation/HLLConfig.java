@@ -17,4 +17,6 @@ public class HLLConfig
 {
     private int port;
     private String password;
+
+    private boolean debug;
 }
