@@ -45,5 +45,9 @@ public class HyLiveLocationServer
      */
     public void start() throws Exception
     {
+        // 创建Jetty服务器对象
+        Server server = new Server(config.getPort());
+        server.start();
+        server.join();
     }
 }
