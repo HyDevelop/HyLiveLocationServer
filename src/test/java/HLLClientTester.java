@@ -18,5 +18,8 @@ public class HLLClientTester
         request.header("node", "misc.test").header("something", "someValue").body("Test request body");
         HttpResponse response = request.execute();
         System.out.println(response);
+
+        // Incorrect usage
+        System.out.println(HttpUtil.get("localhost:19486/some-other-things"));
     }
 }
