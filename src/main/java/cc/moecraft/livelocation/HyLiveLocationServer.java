@@ -16,4 +16,13 @@ public class HyLiveLocationServer
 {
     private final HLLConfig config;
 
+    /**
+     * 创建一个HyLiveLocationServer对象
+     *
+     * @param config 配置
+     */
+    public HyLiveLocationServer(HLLConfig config)
+    {
+        this.config = config;
+    }
 }
