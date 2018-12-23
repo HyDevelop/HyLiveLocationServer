@@ -4,6 +4,7 @@ import cc.moecraft.utils.FileUtils;
 import cc.moecraft.utils.cli.Args;
 import cc.moecraft.utils.cli.ArgsUtils;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -66,7 +67,8 @@ public class HyLiveLocationLauncher
                 if (dbUsr == null) dbUsr = "root";
                 if (dbPwd == null) dbPwd = "default-pw";
 
-                new Gson().toJson(new HLLConfig(port, password, debug, dbUrl, dbUsr, dbPwd), writer);
+                new GsonBuilder().setPrettyPrinting().create()
+                        .toJson(new HLLConfig(port, password, debug, dbUrl, dbUsr, dbPwd), writer);
                 return "Export Success!";
             }
         }
