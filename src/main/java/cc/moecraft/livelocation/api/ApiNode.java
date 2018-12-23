@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author Hykilpikonna
  */
+@SuppressWarnings("UnnecessaryInterfaceModifier")
 public interface ApiNode
 {
     /**
