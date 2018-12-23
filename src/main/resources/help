@@ -1,0 +1,19 @@
+HyLiveLocationServer v${project.version}
+
+Usage:
+    java -jar [path to this jar] [operation] [options...]
+
+Where operations include:
+    help           Print this file.
+    help-cn        输出中文帮助.
+    start          Start the server.
+    export         Export argument config to a file.
+
+Where options include:
+    -file=<path>            Path to config json file. If this config file includes everything,
+                            there's no need for other parameters.
+                            It is also used when exporting argument config.
+
+    -password=<string>      Password
+    -port=<int>             Port
+    -debug=<boolean>        Debug mode (Additional logging messages)
