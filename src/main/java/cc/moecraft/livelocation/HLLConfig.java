@@ -19,4 +19,8 @@ public class HLLConfig
     private String password;
 
     private boolean debug;
+
+    private String dbUrl;
+    private String dbUsr;
+    private String dbPwd;
 }
