@@ -1,5 +1,6 @@
 package cc.moecraft.livelocation;
 
+import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -11,6 +12,7 @@ import lombok.Data;
  * @author Hykilpikonna
  */
 @Data
+@Builder
 public class HLLConfig
 {
     private int port;
