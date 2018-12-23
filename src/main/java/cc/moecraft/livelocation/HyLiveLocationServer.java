@@ -37,4 +37,13 @@ public class HyLiveLocationServer
         this.config = config;
         this.logger = lim.getLoggerInstance("Main", config.isDebug());
     }
+
+    /**
+     * 启动HTTP服务器
+     *
+     * @throws Exception 出错了
+     */
+    public void start() throws Exception
+    {
+    }
 }
