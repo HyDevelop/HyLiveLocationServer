@@ -13,4 +13,6 @@ import lombok.Data;
 @Data
 public class HLLConfig
 {
+    private int port;
+    private String password;
 }
