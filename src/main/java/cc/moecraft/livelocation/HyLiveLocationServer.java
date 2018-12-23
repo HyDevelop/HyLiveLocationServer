@@ -1,5 +1,7 @@
 package cc.moecraft.livelocation;
 
+import cc.moecraft.livelocation.api.ApiHandler;
+import cc.moecraft.livelocation.api.nodes.misc.NodeTest;
 import cc.moecraft.logger.HyLogger;
 import cc.moecraft.logger.LoggerInstanceManager;
 import cc.moecraft.logger.environments.ColorSupportLevel;
@@ -45,8 +47,17 @@ public class HyLiveLocationServer
      */
     public void start() throws Exception
     {
+        // 创建Api监听器对象
+        ApiHandler handler = new ApiHandler(this);
+        handler.getManager().register(
+                new NodeTest()
+        );
+
         // 创建Jetty服务器对象
         Server server = new Server(config.getPort());
+        server.setHandler(handler);
+
+        // 启动Jetty服务器
         server.start();
         server.join();
     }
