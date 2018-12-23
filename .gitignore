@@ -3,3 +3,4 @@
 HyLiveLocationServer.iml
 target/*
 logs/*
+my-secret-config.json
