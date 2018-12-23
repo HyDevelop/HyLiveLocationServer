@@ -35,5 +35,6 @@ public class HyLiveLocationServer
     public HyLiveLocationServer(HLLConfig config)
     {
         this.config = config;
+        this.logger = lim.getLoggerInstance("Main", config.isDebug());
     }
 }
