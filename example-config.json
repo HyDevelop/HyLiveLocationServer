@@ -1,1 +1,8 @@
-{"port":19486,"password":"defaultpw","debug":false}
+{
+  "port": 19486,
+  "password": "default-pw",
+  "debug": false,
+  "dbUrl": "jdbc:mysql://localhost/my_database?serverTimezone\u003dUTC ",
+  "dbUsr": "root",
+  "dbPwd": "default-pw"
+}
