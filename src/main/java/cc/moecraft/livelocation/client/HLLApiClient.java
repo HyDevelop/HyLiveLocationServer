@@ -7,6 +7,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 
 /**
  * 此类由 Hykilpikonna 在 2018/12/24 创建!
@@ -91,6 +92,17 @@ public class HLLApiClient
         {
             e.printStackTrace();
             return "Error: Local Error: " + e.getLocalizedMessage();
+        }
+    }
+    private static String encode(String text)
+    {
+        try
+        {
+            return URLEncoder.encode(text, "UTF-8");
+        }
+        catch (UnsupportedEncodingException e)
+        {
+            throw new RuntimeException(e);
         }
     }
 }
