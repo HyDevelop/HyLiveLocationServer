@@ -18,6 +18,7 @@ public class _MappingKit {
 	public static void mapping(ActiveRecordPlugin arp) {
 		arp.addMapping("data_latest", "username", DataLatest.class);
 		arp.addMapping("data_log", "username", DataLog.class);
+		arp.addMapping("user_info", "username", UserInfo.class);
 	}
 }
 

@@ -33,14 +33,6 @@ public abstract class BaseDataLatest<M extends BaseDataLatest<M>> extends JbootM
 		return getStr("submit_ip");
 	}
 
-	public void setLoginDataset(java.lang.String loginDataset) {
-		set("login_dataset", loginDataset);
-	}
-	
-	public java.lang.String getLoginDataset() {
-		return getStr("login_dataset");
-	}
-
 	public void setLocationDataset(java.lang.String locationDataset) {
 		set("location_dataset", locationDataset);
 	}
