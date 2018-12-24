@@ -2,6 +2,7 @@ package cc.moecraft.livelocation;
 
 import cc.moecraft.livelocation.api.ApiHandler;
 import cc.moecraft.livelocation.api.nodes.misc.NodeTest;
+import cc.moecraft.livelocation.database.DatabaseInitializer;
 import cc.moecraft.livelocation.utils.CryptUtils;
 import cc.moecraft.logger.HyLogger;
 import cc.moecraft.logger.LoggerInstanceManager;
@@ -30,6 +31,8 @@ public class HyLiveLocationServer
 
     private final HyLogger logger;
 
+    private final DatabaseInitializer databaseInitializer;
+
     /**
      * 创建一个HyLiveLocationServer对象
      *
@@ -39,6 +42,9 @@ public class HyLiveLocationServer
     {
         this.config = config;
         this.logger = lim.getLoggerInstance("Main", config.isDebug());
+
+        // 初始化数据库
+        this.databaseInitializer = new DatabaseInitializer(this);
     }
 
     /**
