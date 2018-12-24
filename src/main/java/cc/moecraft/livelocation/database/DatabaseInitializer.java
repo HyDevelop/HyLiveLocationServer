@@ -19,19 +19,25 @@ import static cc.moecraft.livelocation.database.model._MappingKit.mapping;
 @Getter
 public class DatabaseInitializer
 {
-    private final C3p0Plugin c3p0Plugin;
-    private final ActiveRecordPlugin activeRecordPlugin;
+    private C3p0Plugin c3p0Plugin;
+    private ActiveRecordPlugin activeRecordPlugin;
     private final HyLiveLocationServer server;
 
     /**
-     * Initialize database.
+     * Create a database initializer object.
      *
      * @param server Server
      */
     public DatabaseInitializer(HyLiveLocationServer server)
     {
         this.server = server;
+    }
 
+    /**
+     * Initialize database.
+     */
+    public void initialize()
+    {
         HLLConfig config = server.getConfig();
         c3p0Plugin = new C3p0Plugin(config.getDbUrl(), config.getDbUsr(), config.getDbPwd());
         c3p0Plugin.start();
