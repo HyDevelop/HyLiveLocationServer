@@ -5,9 +5,11 @@ import cc.moecraft.livelocation.api.HLLApiNode;
 import cc.moecraft.livelocation.database.model.DataLatest;
 import cc.moecraft.livelocation.database.model.DataLog;
 import cc.moecraft.livelocation.dataset.LocationDataset;
-import com.google.gson.Gson;
 
 import javax.servlet.http.HttpServletRequest;
+
+import static cc.moecraft.livelocation.HLLConstants.GSON_READ;
+import static cc.moecraft.livelocation.HLLConstants.GSON_WRITE;
 
 /**
  * 此类由 Hykilpikonna 在 2018/12/22 创建!
@@ -37,10 +39,18 @@ public class NodeSetLocationDataset extends HLLApiNode
 
         // Parse dataset
         String json = server.decrypt(request.getHeader("dataset"));
-        LocationDataset dataset = new Gson().fromJson(json, LocationDataset.class);
+        LocationDataset dataset = GSON_READ.fromJson(json, LocationDataset.class);
 
         // Move last to logs
         moveLastToLogs(dataset.getUsername());
+
+        // Create new to replace last
+        DataLatest latest = new DataLatest();
+        latest.setUsername(dataset.getUsername());
+        latest.setSubmitIp(request.getRemoteAddr());
+        latest.setSubmitTime(System.currentTimeMillis());
+        latest.setLocationDataset(server.encrypt(GSON_WRITE.toJson(dataset)));
+        latest.save();
 
         return "Success";
     }
