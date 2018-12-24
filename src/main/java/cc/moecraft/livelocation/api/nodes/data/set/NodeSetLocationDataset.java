@@ -33,6 +33,8 @@ public class NodeSetLocationDataset extends HLLApiNode
     @Override
     public String process(HttpServletRequest request, String content)
     {
+        if (!content.equals("Where am I?")) return "Who are you?";
+
         return "";
     }
 }
