@@ -8,7 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static cc.moecraft.livelocation.utils.UrlUtils.encode;
+import static cc.moecraft.livelocation.utils.UrlUtils.urlEncode;
 
 /**
  * 此类由 Hykilpikonna 在 2018/12/24 创建!
@@ -22,7 +22,7 @@ public class HLLApiClient
 {
     private final URL url;
     private final Encryptor encryptor;
-    public static final String KEYWORD_ENC = encode("{enc}");
+    public static final String KEYWORD_ENC = urlEncode("{enc}");
     private final String KEYWORD_NODE;
 
     /**
@@ -98,6 +98,6 @@ public class HLLApiClient
 
     private String encrypt(String text)
     {
-        return encode(encryptor.encrypt(text));
+        return urlEncode(encryptor.encrypt(text));
     }
 }

@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static cc.moecraft.livelocation.utils.UrlUtils.decode;
+import static cc.moecraft.livelocation.utils.UrlUtils.urlDecode;
 
 /**
  * 此类由 Hykilpikonna 在 2018/10/06 创建!
@@ -117,8 +117,8 @@ public class ApiHandler extends AbstractHandler
         while (keys.hasMoreElements())
         {
             String encryptedKey = keys.nextElement();
-            String key = decode(encryptedKey);
-            String val = decode(request.getHeader(encryptedKey));
+            String key = urlDecode(encryptedKey);
+            String val = urlDecode(request.getHeader(encryptedKey));
 
             if (key.startsWith("{enc}"))
             {

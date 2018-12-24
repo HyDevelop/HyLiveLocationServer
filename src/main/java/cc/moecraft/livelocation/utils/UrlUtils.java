@@ -58,7 +58,7 @@ public class UrlUtils
         return pre + body + StrUtil.nullToEmpty(params);
     }
 
-    public static String decode(String text)
+    public static String urlDecode(String text)
     {
         if (text == null || text.isEmpty()) return "";
         try
@@ -71,7 +71,7 @@ public class UrlUtils
         }
     }
 
-    public static String encode(String text)
+    public static String urlEncode(String text)
     {
         if (text == null || text.isEmpty()) return "";
         try
