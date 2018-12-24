@@ -11,6 +11,7 @@ import com.google.gson.GsonBuilder;
  *
  * @author Hykilpikonna
  */
+@SuppressWarnings("WeakerAccess")
 public class HLLConstants
 {
     public static final Gson GSON_READ = new Gson();
