@@ -9,6 +9,14 @@ import com.jfinal.plugin.activerecord.IBean;
 @SuppressWarnings("serial")
 public abstract class BaseDataLog<M extends BaseDataLog<M>> extends JbootModel<M> implements IBean {
 
+	public void setIndex(java.lang.Long index) {
+		set("index", index);
+	}
+	
+	public java.lang.Long getIndex() {
+		return getLong("index");
+	}
+
 	public void setUsername(java.lang.String username) {
 		set("username", username);
 	}
