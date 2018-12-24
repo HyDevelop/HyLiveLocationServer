@@ -1,6 +1,8 @@
 package cc.moecraft.livelocation;
 
 import cc.moecraft.livelocation.api.ApiHandler;
+import cc.moecraft.livelocation.api.nodes.data.set.NodeSetLocationDataset;
+import cc.moecraft.livelocation.api.nodes.data.set.NodeSetUserInfo;
 import cc.moecraft.livelocation.api.nodes.misc.NodeTest;
 import cc.moecraft.livelocation.database.DatabaseInitializer;
 import cc.moecraft.livelocation.utils.encryption.Encryptor;
@@ -61,7 +63,11 @@ public class HyLiveLocationServer
         // 创建Api监听器对象
         ApiHandler handler = new ApiHandler(this);
         handler.getManager().register(
-                new NodeTest()
+                new NodeTest(),
+
+                // 上传数据
+                new NodeSetLocationDataset(this),
+                new NodeSetUserInfo(this)
         );
 
         // 创建Jetty服务器对象
