@@ -20,6 +20,8 @@ public class HLLApiClient
 {
     private final URL url;
     private final Encryptor encryptor;
+    public static final String KEYWORD_ENC = "{enc}";
+    private final String KEYWORD_NODE;
 
     /**
      * Create an Api client object.
@@ -30,8 +32,9 @@ public class HLLApiClient
     {
         try
         {
-            this.encryptor = encryptor;
             this.url = new URL(UrlUtils.normalize(url));
+            this.encryptor = encryptor;
+            this.KEYWORD_NODE = KEYWORD_ENC + encryptor.encrypt("node");
         }
         catch (MalformedURLException e)
         {
@@ -47,14 +50,14 @@ public class HLLApiClient
             connection.setRequestMethod("POST");
 
             // 设置 ApiNode
-            connection.setRequestProperty("node", apiNode);
+            connection.setRequestProperty(KEYWORD_ENC, encryptor.encrypt(apiNode));
 
             // 设置其他键值对
             for (int i = 0; i < kv.length; i += 2)
             {
                 String key = kv[i].toString();
                 String val = kv[i + 1].toString();
-                connection.setRequestProperty(key, val);
+                connection.setRequestProperty(KEYWORD_ENC + encryptor.encrypt(key), encryptor.encrypt(val));
             }
 
             // 如果有内容, 设置内容
@@ -73,16 +76,16 @@ public class HLLApiClient
             // 获取回复
             InputStream inputStream = connection.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-            StringBuilder response = new StringBuilder();
+            StringBuilder responseBody = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null)
             {
-                response.append(line).append("\n");
+                responseBody.append(line).append("\n");
             }
             reader.close();
 
             // 去掉最后多余的换行
-            return response.toString().substring(0, response.length() - 1);
+            return responseBody.toString().substring(0, responseBody.length() - 1);
         }
         catch (IOException e)
         {
