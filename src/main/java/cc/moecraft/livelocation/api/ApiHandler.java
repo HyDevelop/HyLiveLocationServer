@@ -81,6 +81,7 @@ public class ApiHandler extends AbstractHandler
             catch (Throwable e)
             {
                 // Write error.
+                e.printStackTrace();
                 ResponseUtils.writeResponse(response, "Unpredicted Error: " + e.getMessage());
             }
         }
