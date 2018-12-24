@@ -46,6 +46,14 @@ public class HLLApiClient
         }
     }
 
+    /**
+     * 发送Api请求
+     *
+     * @param apiNode Api 节点
+     * @param content 请求数据
+     * @param kv Header 键值对
+     * @return 返回信息
+     */
     public String send(String apiNode, String content, Object ... kv)
     {
         try
