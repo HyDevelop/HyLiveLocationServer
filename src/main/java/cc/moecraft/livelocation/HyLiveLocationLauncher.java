@@ -3,8 +3,6 @@ package cc.moecraft.livelocation;
 import cc.moecraft.utils.FileUtils;
 import cc.moecraft.utils.cli.Args;
 import cc.moecraft.utils.cli.ArgsUtils;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import lombok.Getter;
 
 import java.io.File;
@@ -13,6 +11,8 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Map;
 
+import static cc.moecraft.livelocation.HLLConstants.GSON_PRETTY;
+import static cc.moecraft.livelocation.HLLConstants.GSON_READ;
 import static cc.moecraft.utils.cli.ResourceUtils.readResource;
 import static java.lang.Boolean.parseBoolean;
 import static java.lang.Integer.parseInt;
@@ -71,8 +71,7 @@ public class HyLiveLocationLauncher
                 if (dbUsr == null) dbUsr = "root";
                 if (dbPwd == null) dbPwd = "default-pw";
 
-                new GsonBuilder().setPrettyPrinting().create()
-                        .toJson(new HLLConfig(port, password, debug, dbUrl, dbUsr, dbPwd), writer);
+                GSON_PRETTY.toJson(new HLLConfig(port, password, debug, dbUrl, dbUsr, dbPwd), writer);
                 return "Export Success!";
             }
         }
@@ -81,7 +80,7 @@ public class HyLiveLocationLauncher
         if (hasFile)
         {
             File file = new File(options.get("file"));
-            HLLConfig config = new Gson().fromJson(FileUtils.readFileAsString(file), HLLConfig.class);
+            HLLConfig config = GSON_READ.fromJson(FileUtils.readFileAsString(file), HLLConfig.class);
             password = config.getPassword();
             port = config.getPort();
             debug = config.isDebug();
