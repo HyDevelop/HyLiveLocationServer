@@ -35,10 +35,25 @@ public class NodeSetLocationDataset extends HLLApiNode
     {
         if (!content.equals("Where am I?")) return "Who are you?";
 
+        // Parse dataset
         String json = server.decrypt(request.getHeader("dataset"));
         LocationDataset dataset = new Gson().fromJson(json, LocationDataset.class);
 
-        DataLatest last = new DataLatest().findById(dataset.getUsername());
+        // Move last to logs
+        moveLastToLogs(dataset.getUsername());
+
+        return "Success";
+    }
+
+    /**
+     * Move last DataLatest to DataLog.
+     * Ignores if last doesn't exist.
+     *
+     * @param username Username
+     */
+    private void moveLastToLogs(String username)
+    {
+        DataLatest last = new DataLatest().findById(username);
         if (last != null)
         {
             DataLog dataLog = new DataLog();
@@ -49,9 +64,5 @@ public class NodeSetLocationDataset extends HLLApiNode
             dataLog.save();
             last.delete();
         }
-
-
-
-        return "Success";
     }
 }
