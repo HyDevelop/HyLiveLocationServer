@@ -17,12 +17,12 @@ public abstract class BaseDataLog<M extends BaseDataLog<M>> extends JbootModel<M
 		return getStr("username");
 	}
 
-	public void setSubmitTime(java.lang.String submitTime) {
+	public void setSubmitTime(java.lang.Long submitTime) {
 		set("submit_time", submitTime);
 	}
 	
-	public java.lang.String getSubmitTime() {
-		return getStr("submit_time");
+	public java.lang.Long getSubmitTime() {
+		return getLong("submit_time");
 	}
 
 	public void setSubmitIp(java.lang.String submitIp) {
