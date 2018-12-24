@@ -1,6 +1,7 @@
 package cc.moecraft.livelocation.client;
 
 import cc.moecraft.livelocation.utils.UrlUtils;
+import cc.moecraft.livelocation.utils.encryption.Encryptor;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -18,16 +19,18 @@ import java.net.URL;
 public class HLLApiClient
 {
     private final URL url;
+    private final Encryptor encryptor;
 
     /**
      * Create an Api client object.
      *
      * @param url URL (e.g. "http://livelocation.hydev.pw/api")
      */
-    public HLLApiClient(String url)
+    public HLLApiClient(String url, Encryptor encryptor)
     {
         try
         {
+            this.encryptor = encryptor;
             this.url = new URL(UrlUtils.normalize(url));
         }
         catch (MalformedURLException e)
