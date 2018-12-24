@@ -37,6 +37,11 @@ public class NodeSetLocationDataset extends HLLApiNode
 
         String json = server.decrypt(request.getHeader("dataset"));
         LocationDataset dataset = new Gson().fromJson(json, LocationDataset.class);
-        return "";
+
+        DataLatest last = new DataLatest().findById(dataset.getUsername());
+
+
+
+        return "Success";
     }
 }
