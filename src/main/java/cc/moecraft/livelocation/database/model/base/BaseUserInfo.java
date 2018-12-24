@@ -25,4 +25,12 @@ public abstract class BaseUserInfo<M extends BaseUserInfo<M>> extends JbootModel
 		return getStr("avatar_url");
 	}
 
+	public void setLastActive(java.lang.Long lastActive) {
+		set("last_active", lastActive);
+	}
+	
+	public java.lang.Long getLastActive() {
+		return getLong("last_active");
+	}
+
 }
