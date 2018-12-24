@@ -22,7 +22,7 @@ public class HLLApiClient
 {
     private final URL url;
     private final Encryptor encryptor;
-    public static final String KEYWORD_ENC = urlEncode("{enc}");
+    private static final String KEYWORD_ENC = urlEncode("{enc}");
     private final String KEYWORD_NODE;
 
     /**
@@ -62,9 +62,13 @@ public class HLLApiClient
                 connection.setRequestProperty(KEYWORD_ENC + encrypt(key), encrypt(val));
             }
 
-            // 如果有内容, 设置内容
+            // 如果有内容
             if (content != null && !content.isEmpty())
             {
+                // 加密内容
+                content = KEYWORD_ENC + encrypt(content);
+
+                // 发送内容
                 connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 connection.setRequestProperty("Content-Length", "" + content.getBytes().length);
                 connection.setUseCaches(false);
