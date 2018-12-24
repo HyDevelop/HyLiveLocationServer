@@ -66,7 +66,7 @@ public class ApiHandler extends AbstractHandler
                 String content = urlDecode(request.getReader().lines().collect(joining(lineSeparator())));
 
                 // Decrypt Content.
-                if (content.startsWith("{enc}")) content = server.getEncryptor().decrypt(content.substring(5));
+                if (content.startsWith("-enc-")) content = server.getEncryptor().decrypt(content.substring(5));
 
                 // Debug output
                 logger.debug("Request received: {} : {}", node, content);
@@ -121,7 +121,7 @@ public class ApiHandler extends AbstractHandler
             String key = urlDecode(encryptedKey);
             String val = urlDecode(request.getHeader(encryptedKey));
 
-            if (key.startsWith("{enc}"))
+            if (key.startsWith("-enc-"))
             {
                 String decryptedKey = server.getEncryptor().decrypt(key.substring(5));
                 String decryptedVal = server.getEncryptor().decrypt(val);
