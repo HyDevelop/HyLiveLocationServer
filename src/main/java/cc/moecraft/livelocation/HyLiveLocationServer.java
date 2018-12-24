@@ -3,7 +3,7 @@ package cc.moecraft.livelocation;
 import cc.moecraft.livelocation.api.ApiHandler;
 import cc.moecraft.livelocation.api.nodes.misc.NodeTest;
 import cc.moecraft.livelocation.database.DatabaseInitializer;
-import cc.moecraft.livelocation.utils.encryption.CryptUtils;
+import cc.moecraft.livelocation.utils.encryption.Encryptor;
 import cc.moecraft.logger.HyLogger;
 import cc.moecraft.logger.LoggerInstanceManager;
 import cc.moecraft.logger.environments.ColorSupportLevel;
@@ -33,6 +33,8 @@ public class HyLiveLocationServer
 
     private final DatabaseInitializer databaseInitializer;
 
+    private final Encryptor encryptor;
+
     /**
      * 创建一个HyLiveLocationServer对象
      *
@@ -43,6 +45,7 @@ public class HyLiveLocationServer
         this.config = config;
         this.logger = lim.getLoggerInstance("Main", config.isDebug());
         this.databaseInitializer = new DatabaseInitializer(this);
+        this.encryptor = new Encryptor(config.getPassword());
     }
 
     /**
@@ -68,15 +71,5 @@ public class HyLiveLocationServer
         // 启动Jetty服务器
         server.start();
         server.join();
-    }
-
-    public String encrypt(String text)
-    {
-        return CryptUtils.encrypt(text, getConfig().getPassword());
-    }
-
-    public String decrypt(String text)
-    {
-        return CryptUtils.decrypt(text, getConfig().getPassword());
     }
 }
