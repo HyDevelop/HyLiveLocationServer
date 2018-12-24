@@ -23,6 +23,6 @@ public class NodeTest implements ApiNode
     @Override
     public String process(HttpServletRequest request, String content)
     {
-        return "Success! " + content;
+        return "Success! \nRequest content is: " + content;
     }
 }
