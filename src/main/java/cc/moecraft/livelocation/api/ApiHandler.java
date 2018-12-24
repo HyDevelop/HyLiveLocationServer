@@ -50,8 +50,11 @@ public class ApiHandler extends AbstractHandler
         {
             try
             {
+                // Decrypt Headers.
+                Map<String, String> headers = decryptHeaders(request);
+
                 // Verify node.
-                String nodeName = request.getHeader("node");
+                String nodeName = headers.get("node");
                 if (nodeName == null) throw new RequestException("Node not specified.");
 
                 // Find node.
@@ -62,9 +65,6 @@ public class ApiHandler extends AbstractHandler
                 String content = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
 
                 // Decrypt Content.
-
-                // Decrypt Headers.
-                Map<String, String> headers = decryptHeaders(request);
                 if (content.startsWith("{enc}")) content = server.getEncryptor().decrypt(content.substring(5));
 
                 // Debug output
