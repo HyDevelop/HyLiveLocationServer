@@ -115,8 +115,9 @@ public class ApiHandler extends AbstractHandler
         Enumeration<String> keys = request.getHeaderNames();
         while (keys.hasMoreElements())
         {
-            String key = keys.nextElement();
-            String val = request.getHeader(key);
+            String encryptedKey = keys.nextElement();
+            String key = decode(encryptedKey);
+            String val = decode(request.getHeader(encryptedKey));
 
             if (key.startsWith("{enc}"))
             {
