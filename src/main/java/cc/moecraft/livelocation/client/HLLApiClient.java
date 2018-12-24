@@ -21,7 +21,7 @@ public class HLLApiClient
 {
     private final URL url;
     private final Encryptor encryptor;
-    public static final String KEYWORD_ENC = "{enc}";
+    public static final String KEYWORD_ENC = encode("{enc}");
     private final String KEYWORD_NODE;
 
     /**
@@ -35,7 +35,7 @@ public class HLLApiClient
         {
             this.url = new URL(UrlUtils.normalize(url));
             this.encryptor = encryptor;
-            this.KEYWORD_NODE = KEYWORD_ENC + encryptor.encrypt("node");
+            this.KEYWORD_NODE = KEYWORD_ENC + encrypt("node");
         }
         catch (MalformedURLException e)
         {
@@ -51,14 +51,14 @@ public class HLLApiClient
             connection.setRequestMethod("POST");
 
             // 设置 ApiNode
-            connection.setRequestProperty(KEYWORD_ENC, encryptor.encrypt(apiNode));
+            connection.setRequestProperty(KEYWORD_NODE, encrypt(apiNode));
 
             // 设置其他键值对
             for (int i = 0; i < kv.length; i += 2)
             {
                 String key = kv[i].toString();
                 String val = kv[i + 1].toString();
-                connection.setRequestProperty(KEYWORD_ENC + encryptor.encrypt(key), encryptor.encrypt(val));
+                connection.setRequestProperty(KEYWORD_ENC + encrypt(key), encrypt(val));
             }
 
             // 如果有内容, 设置内容
