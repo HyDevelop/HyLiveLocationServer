@@ -1,4 +1,5 @@
 import cc.moecraft.livelocation.client.HLLApiClient;
+import cc.moecraft.livelocation.utils.encryption.Encryptor;
 
 /**
  * 此类由 Hykilpikonna 在 2018/12/24 创建!
@@ -12,7 +13,7 @@ public class HLLApiClientTester
 {
     public static void main(String[] args)
     {
-        HLLApiClient client = new HLLApiClient("localhost:19486/api");
+        HLLApiClient client = new HLLApiClient("localhost:19486/api", new Encryptor("default-pw"));
         System.out.println(client.send("misc.test", "Test request body", "something", "someValue"));
 
         /*HttpRequest request = HttpUtil.createPost("localhost:19486/api");
