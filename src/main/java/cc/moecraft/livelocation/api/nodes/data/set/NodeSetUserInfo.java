@@ -2,8 +2,13 @@ package cc.moecraft.livelocation.api.nodes.data.set;
 
 import cc.moecraft.livelocation.HyLiveLocationServer;
 import cc.moecraft.livelocation.api.HLLApiNode;
+import cc.moecraft.livelocation.database.DataValidator;
+import cc.moecraft.livelocation.database.model.UserInfo;
+import cc.moecraft.livelocation.dataset.UserInfoDataset;
 
 import javax.servlet.http.HttpServletRequest;
+
+import static cc.moecraft.livelocation.HLLConstants.GSON_READ;
 
 /**
  * 此类由 Hykilpikonna 在 2018/12/24 创建!
@@ -29,6 +34,13 @@ public class NodeSetUserInfo extends HLLApiNode
     @Override
     public String process(HttpServletRequest request, String content)
     {
-        return null;
+        // Parse dataset
+        String json = server.decrypt(request.getHeader("dataset"));
+        UserInfoDataset dataset = GSON_READ.fromJson(json, UserInfoDataset.class);
+
+        UserInfo info = DataValidator.validateUser(dataset.getUsername());
+        info.updateFromDataset(dataset);
+
+        return "Success";
     }
 }
