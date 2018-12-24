@@ -10,6 +10,8 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -125,5 +127,18 @@ public class ApiHandler extends AbstractHandler
             else headers.put(key, val);
         }
         return headers;
+    }
+
+    private static String decode(String text)
+    {
+        if (text == null || text.isEmpty()) return "";
+        try
+        {
+            return URLDecoder.decode(text, "UTF-8");
+        }
+        catch (UnsupportedEncodingException e)
+        {
+            throw new RuntimeException(e);
+        }
     }
 }
