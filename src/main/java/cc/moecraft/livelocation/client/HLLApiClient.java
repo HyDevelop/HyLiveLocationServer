@@ -118,4 +118,15 @@ public class HLLApiClient
     {
         return send("misc.test", content);
     }
+
+    /**
+     * 更新用户信息
+     *
+     * @param dataset 用户信息Dataset
+     * @return 执行结果
+     */
+    public String sendSetUserInfo(UserInfoDataset dataset)
+    {
+        return send("data.set.user-info", null, "dataset", GSON_WRITE.toJson(dataset));
+    }
 }
