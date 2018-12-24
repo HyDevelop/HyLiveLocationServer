@@ -1,6 +1,11 @@
 package cc.moecraft.livelocation.api.nodes.data.set;
 
-import cc.moecraft.livelocation.api.ApiNode;
+import cc.moecraft.livelocation.HyLiveLocationServer;
+import cc.moecraft.livelocation.api.HLLApiNode;
+import cc.moecraft.livelocation.database.model.DataLatest;
+import cc.moecraft.livelocation.database.model.DataLog;
+import cc.moecraft.livelocation.dataset.LocationDataset;
+import com.google.gson.Gson;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,8 +17,13 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author Hykilpikonna
  */
-public class NodeSetLocationDataset implements ApiNode
+public class NodeSetLocationDataset extends HLLApiNode
 {
+    public NodeSetLocationDataset(HyLiveLocationServer server)
+    {
+        super(server);
+    }
+
     @Override
     public String nodeName()
     {
