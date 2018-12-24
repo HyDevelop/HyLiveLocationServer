@@ -4,6 +4,7 @@ import cn.hutool.core.util.StrUtil;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 
 /**
  * 此类由 Hykilpikonna 在 2018/12/24 创建!
@@ -63,6 +64,19 @@ public class UrlUtils
         try
         {
             return URLDecoder.decode(text, "UTF-8");
+        }
+        catch (UnsupportedEncodingException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String encode(String text)
+    {
+        if (text == null || text.isEmpty()) return "";
+        try
+        {
+            return URLEncoder.encode(text, "UTF-8");
         }
         catch (UnsupportedEncodingException e)
         {
