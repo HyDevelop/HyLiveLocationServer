@@ -5,6 +5,7 @@ import cc.moecraft.livelocation.api.ApiAccess;
 import cc.moecraft.livelocation.api.HLLApiNode;
 import cc.moecraft.livelocation.database.DataValidator;
 import cc.moecraft.livelocation.database.model.DataLatest;
+import cc.moecraft.livelocation.database.model.UserInfo;
 import cc.moecraft.livelocation.dataset.LocationDataset;
 
 import static cc.moecraft.livelocation.HLLConstants.GSON_READ;
@@ -40,6 +41,11 @@ public class NodeSetLocationDataset extends HLLApiNode
 
         // Move last to logs
         DataValidator.moveLastToLogs(dataset.getUsername());
+
+        // Verify user, and update last active date
+        UserInfo userInfo = DataValidator.validateUser(dataset.getUsername());
+        userInfo.updateLastActive();
+        userInfo.update();
 
         // Create new to replace last
         DataLatest latest = new DataLatest();
