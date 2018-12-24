@@ -25,7 +25,6 @@ public class HLLApiClient
 {
     private final URL url;
     private final Encryptor encryptor;
-    private static final String KEYWORD_ENC = urlEncode("{enc}");
     private final String KEYWORD_NODE;
 
     /**
@@ -39,7 +38,7 @@ public class HLLApiClient
         {
             this.url = new URL(UrlUtils.normalize(url));
             this.encryptor = encryptor;
-            this.KEYWORD_NODE = KEYWORD_ENC + encrypt("node");
+            this.KEYWORD_NODE = "-enc-" + encrypt("node");
         }
         catch (MalformedURLException e)
         {
@@ -62,14 +61,14 @@ public class HLLApiClient
             {
                 String key = kv[i].toString();
                 String val = kv[i + 1].toString();
-                connection.setRequestProperty(KEYWORD_ENC + encrypt(key), encrypt(val));
+                connection.setRequestProperty("-enc-" + encrypt(key), encrypt(val));
             }
 
             // 如果有内容
             if (content != null && !content.isEmpty())
             {
                 // 加密内容
-                content = KEYWORD_ENC + encrypt(content);
+                content = "-enc-" + encrypt(content);
 
                 // 发送内容
                 connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
