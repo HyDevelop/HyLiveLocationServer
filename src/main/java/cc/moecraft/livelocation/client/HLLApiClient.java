@@ -91,7 +91,7 @@ public class HLLApiClient
         catch (IOException e)
         {
             e.printStackTrace();
-            return "Error: Local Error: " + e.getLocalizedMessage();
+            return "Error: Local Error: " + e.getMessage();
         }
     }
 
