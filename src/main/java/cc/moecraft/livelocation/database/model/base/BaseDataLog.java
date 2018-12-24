@@ -33,14 +33,6 @@ public abstract class BaseDataLog<M extends BaseDataLog<M>> extends JbootModel<M
 		return getStr("submit_ip");
 	}
 
-	public void setLoginDataset(java.lang.String loginDataset) {
-		set("login_dataset", loginDataset);
-	}
-	
-	public java.lang.String getLoginDataset() {
-		return getStr("login_dataset");
-	}
-
 	public void setLocationDataset(java.lang.String locationDataset) {
 		set("location_dataset", locationDataset);
 	}
