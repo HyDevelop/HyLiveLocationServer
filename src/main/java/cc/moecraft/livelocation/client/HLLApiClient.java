@@ -7,7 +7,8 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
+
+import static cc.moecraft.livelocation.utils.UrlUtils.encode;
 
 /**
  * 此类由 Hykilpikonna 在 2018/12/24 创建!
@@ -98,17 +99,5 @@ public class HLLApiClient
     private String encrypt(String text)
     {
         return encode(encryptor.encrypt(text));
-    }
-
-    private static String encode(String text)
-    {
-        try
-        {
-            return URLEncoder.encode(text, "UTF-8");
-        }
-        catch (UnsupportedEncodingException e)
-        {
-            throw new RuntimeException(e);
-        }
     }
 }
