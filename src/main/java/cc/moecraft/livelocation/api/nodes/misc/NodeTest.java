@@ -1,8 +1,7 @@
 package cc.moecraft.livelocation.api.nodes.misc;
 
+import cc.moecraft.livelocation.api.ApiAccess;
 import cc.moecraft.livelocation.api.ApiNode;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * 此类由 Hykilpikonna 在 2018/10/07 创建!
@@ -21,8 +20,8 @@ public class NodeTest implements ApiNode
     }
 
     @Override
-    public String process(HttpServletRequest request, String content)
+    public String process(ApiAccess access)
     {
-        return "Success! \nRequest content is: " + content;
+        return "Success! \nRequest content is: " + access.getContent();
     }
 }

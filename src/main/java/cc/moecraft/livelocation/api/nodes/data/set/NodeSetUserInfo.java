@@ -1,12 +1,11 @@
 package cc.moecraft.livelocation.api.nodes.data.set;
 
 import cc.moecraft.livelocation.HyLiveLocationServer;
+import cc.moecraft.livelocation.api.ApiAccess;
 import cc.moecraft.livelocation.api.HLLApiNode;
 import cc.moecraft.livelocation.database.DataValidator;
 import cc.moecraft.livelocation.database.model.UserInfo;
 import cc.moecraft.livelocation.dataset.UserInfoDataset;
-
-import javax.servlet.http.HttpServletRequest;
 
 import static cc.moecraft.livelocation.HLLConstants.GSON_READ;
 
@@ -32,10 +31,10 @@ public class NodeSetUserInfo extends HLLApiNode
     }
 
     @Override
-    public String process(HttpServletRequest request, String content)
+    public String process(ApiAccess access)
     {
         // Parse dataset
-        String json = server.decrypt(request.getHeader("dataset"));
+        String json = access.getHeaders().get("dataset");
         UserInfoDataset dataset = GSON_READ.fromJson(json, UserInfoDataset.class);
 
         UserInfo info = DataValidator.validateUser(dataset.getUsername());

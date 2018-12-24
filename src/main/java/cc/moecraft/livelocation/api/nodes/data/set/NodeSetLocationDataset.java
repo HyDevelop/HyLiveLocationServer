@@ -1,12 +1,11 @@
 package cc.moecraft.livelocation.api.nodes.data.set;
 
 import cc.moecraft.livelocation.HyLiveLocationServer;
+import cc.moecraft.livelocation.api.ApiAccess;
 import cc.moecraft.livelocation.api.HLLApiNode;
 import cc.moecraft.livelocation.database.DataValidator;
 import cc.moecraft.livelocation.database.model.DataLatest;
 import cc.moecraft.livelocation.dataset.LocationDataset;
-
-import javax.servlet.http.HttpServletRequest;
 
 import static cc.moecraft.livelocation.HLLConstants.GSON_READ;
 import static cc.moecraft.livelocation.HLLConstants.GSON_WRITE;
@@ -33,10 +32,10 @@ public class NodeSetLocationDataset extends HLLApiNode
     }
 
     @Override
-    public String process(HttpServletRequest request, String content)
+    public String process(ApiAccess access)
     {
         // Parse dataset
-        String json = server.decrypt(request.getHeader("dataset"));
+        String json = access.getHeaders().get("dataset");
         LocationDataset dataset = GSON_READ.fromJson(json, LocationDataset.class);
 
         // Move last to logs
@@ -45,9 +44,9 @@ public class NodeSetLocationDataset extends HLLApiNode
         // Create new to replace last
         DataLatest latest = new DataLatest();
         latest.setUsername(dataset.getUsername());
-        latest.setSubmitIp(request.getRemoteAddr());
+        latest.setSubmitIp(access.getRequest().getRemoteAddr());
         latest.setSubmitTime(System.currentTimeMillis());
-        latest.setLocationDataset(server.encrypt(GSON_WRITE.toJson(dataset)));
+        latest.setLocationDataset(server.getEncryptor().encrypt(GSON_WRITE.toJson(dataset)));
         latest.save();
 
         return "Success";
