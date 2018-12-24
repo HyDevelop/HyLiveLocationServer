@@ -94,6 +94,12 @@ public class HLLApiClient
             return "Error: Local Error: " + e.getLocalizedMessage();
         }
     }
+
+    private String encrypt(String text)
+    {
+        return encode(encryptor.encrypt(text));
+    }
+
     private static String encode(String text)
     {
         try
