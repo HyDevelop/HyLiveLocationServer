@@ -2,8 +2,8 @@ package cc.moecraft.livelocation.api.nodes.data.set;
 
 import cc.moecraft.livelocation.HyLiveLocationServer;
 import cc.moecraft.livelocation.api.HLLApiNode;
+import cc.moecraft.livelocation.database.DataValidator;
 import cc.moecraft.livelocation.database.model.DataLatest;
-import cc.moecraft.livelocation.database.model.DataLog;
 import cc.moecraft.livelocation.dataset.LocationDataset;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,7 +42,7 @@ public class NodeSetLocationDataset extends HLLApiNode
         LocationDataset dataset = GSON_READ.fromJson(json, LocationDataset.class);
 
         // Move last to logs
-        moveLastToLogs(dataset.getUsername());
+        DataValidator.moveLastToLogs(dataset.getUsername());
 
         // Create new to replace last
         DataLatest latest = new DataLatest();
@@ -53,26 +53,5 @@ public class NodeSetLocationDataset extends HLLApiNode
         latest.save();
 
         return "Success";
-    }
-
-    /**
-     * Move last DataLatest to DataLog.
-     * Ignores if last doesn't exist.
-     *
-     * @param username Username
-     */
-    private void moveLastToLogs(String username)
-    {
-        DataLatest last = new DataLatest().findById(username);
-        if (last != null)
-        {
-            DataLog dataLog = new DataLog();
-            dataLog.setUsername(last.getUsername());
-            dataLog.setSubmitIp(last.getSubmitIp());
-            dataLog.setSubmitTime(last.getSubmitTime());
-            dataLog.setLocationDataset(last.getLocationDataset());
-            dataLog.save();
-            last.delete();
-        }
     }
 }
