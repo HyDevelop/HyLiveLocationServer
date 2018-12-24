@@ -2,6 +2,7 @@ package cc.moecraft.livelocation.database;
 
 import cc.moecraft.livelocation.database.model.DataLatest;
 import cc.moecraft.livelocation.database.model.DataLog;
+import cc.moecraft.livelocation.database.model.UserInfo;
 
 /**
  * 此类由 Hykilpikonna 在 2018/12/24 创建!
@@ -31,6 +32,22 @@ public class DataValidator
             dataLog.setLocationDataset(last.getLocationDataset());
             dataLog.save();
             last.delete();
+        }
+    }
+
+    /**
+     * Validate user login
+     *  - Creates a user info entry if it doesn't exist.
+     */
+    public static void validateUser(String username)
+    {
+        UserInfo userInfo = new UserInfo().findById(username);
+        if (userInfo == null)
+        {
+            userInfo = new UserInfo();
+            userInfo.setUsername(username);
+            userInfo.updateLastActive();
+            userInfo.save();
         }
     }
 }
