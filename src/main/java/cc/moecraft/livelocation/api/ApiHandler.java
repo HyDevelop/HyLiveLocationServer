@@ -10,12 +10,12 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import static cc.moecraft.livelocation.utils.UrlUtils.decode;
 
 /**
  * 此类由 Hykilpikonna 在 2018/10/06 创建!
@@ -131,16 +131,5 @@ public class ApiHandler extends AbstractHandler
         return headers;
     }
 
-    private static String decode(String text)
-    {
-        if (text == null || text.isEmpty()) return "";
-        try
-        {
-            return URLDecoder.decode(text, "UTF-8");
-        }
-        catch (UnsupportedEncodingException e)
-        {
-            throw new RuntimeException(e);
-        }
-    }
+
 }

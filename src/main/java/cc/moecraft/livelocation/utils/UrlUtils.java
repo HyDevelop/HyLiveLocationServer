@@ -2,6 +2,9 @@ package cc.moecraft.livelocation.utils;
 
 import cn.hutool.core.util.StrUtil;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 /**
  * 此类由 Hykilpikonna 在 2018/12/24 创建!
  * Created by Hykilpikonna on 2018/12/24!
@@ -52,5 +55,18 @@ public class UrlUtils
         //替换多个\或/为单个/
         body = body.replace("\\", "/").replaceAll("//+", "/");
         return pre + body + StrUtil.nullToEmpty(params);
+    }
+
+    public static String decode(String text)
+    {
+        if (text == null || text.isEmpty()) return "";
+        try
+        {
+            return URLDecoder.decode(text, "UTF-8");
+        }
+        catch (UnsupportedEncodingException e)
+        {
+            throw new RuntimeException(e);
+        }
     }
 }
