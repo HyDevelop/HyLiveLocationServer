@@ -42,8 +42,6 @@ public class HyLiveLocationServer
     {
         this.config = config;
         this.logger = lim.getLoggerInstance("Main", config.isDebug());
-
-        // 初始化数据库
         this.databaseInitializer = new DatabaseInitializer(this);
     }
 
@@ -54,6 +52,9 @@ public class HyLiveLocationServer
      */
     public void start() throws Exception
     {
+        // 初始化数据库
+        databaseInitializer.initialize();
+
         // 创建Api监听器对象
         ApiHandler handler = new ApiHandler(this);
         handler.getManager().register(
