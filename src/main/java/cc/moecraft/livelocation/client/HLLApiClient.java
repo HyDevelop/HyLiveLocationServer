@@ -129,4 +129,15 @@ public class HLLApiClient
     {
         return send("data.set.user-info", null, "dataset", GSON_WRITE.toJson(dataset));
     }
+
+    /**
+     * 上传位置信息
+     *
+     * @param dataset 位置信息Dataset
+     * @return 执行结果
+     */
+    public String sendSetLocationDataset(LocationDataset dataset)
+    {
+        return send("data.set.location-dataset", null, "dataset", GSON_WRITE.toJson(dataset));
+    }
 }
