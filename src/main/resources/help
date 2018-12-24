@@ -8,6 +8,7 @@ Where operations include:
     help-cn        输出中文帮助.
     start          Start the server.
     export         Export argument config to a file.
+    migrate        Change password for database entries.
 
 Where options include:
     -file=<path>            Path to config json file. If this config file includes everything,
@@ -21,3 +22,5 @@ Where options include:
     -db-url=<url>           URL for JDBC connection. (e.g. jdbc="jdbc:mysql://localhost/my_database?serverTimezone=UTC ")
     -db-usr=<string>        Username for JDBC connection.
     -db-pwd=<string>        Password for JDBC connection.
+
+    -old-password=<string>  Old password. This is used in operation "migrate"
