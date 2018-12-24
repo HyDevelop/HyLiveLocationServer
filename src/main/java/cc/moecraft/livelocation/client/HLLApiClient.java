@@ -1,5 +1,7 @@
 package cc.moecraft.livelocation.client;
 
+import cc.moecraft.livelocation.dataset.LocationDataset;
+import cc.moecraft.livelocation.dataset.UserInfoDataset;
 import cc.moecraft.livelocation.utils.UrlUtils;
 import cc.moecraft.livelocation.utils.encryption.Encryptor;
 
@@ -8,6 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static cc.moecraft.livelocation.HLLConstants.GSON_WRITE;
 import static cc.moecraft.livelocation.utils.UrlUtils.urlDecode;
 import static cc.moecraft.livelocation.utils.UrlUtils.urlEncode;
 import static java.lang.System.lineSeparator;
@@ -103,5 +106,16 @@ public class HLLApiClient
     private String encrypt(String text)
     {
         return urlEncode(encryptor.encrypt(text));
+    }
+
+    /**
+     * 发送测试
+     *
+     * @param content 测试数据
+     * @return 测试返回
+     */
+    public String sendTest(String content)
+    {
+        return send("misc.test", content);
     }
 }
