@@ -10,6 +10,9 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -26,9 +29,11 @@ public class ApiHandler extends AbstractHandler
     @Getter
     private ApiNodeManager manager;
     private final HyLogger logger;
+    private final HyLiveLocationServer server;
 
     public ApiHandler(HyLiveLocationServer server)
     {
+        this.server = server;
         manager = new ApiNodeManager();
 
         logger = server.getLim().getLoggerInstance("ApiHandler", server.getConfig().isDebug());
@@ -54,11 +59,14 @@ public class ApiHandler extends AbstractHandler
                 // Obtain Content.
                 String content = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
 
-                // TODO: Remove debug output
+                // Decrypt Headers.
+                Map<String, String> headers = decryptHeaders(request);
+
+                // Debug output
                 logger.debug("Request received: {} : {}", node, content);
 
                 // Write response.
-                ResponseUtils.writeResponse(response, node.process(request, content));
+                ResponseUtils.writeResponse(response, node.process(new ApiAccess(request, headers, content)));
             }
             catch (RequestException e)
             {
@@ -88,5 +96,31 @@ public class ApiHandler extends AbstractHandler
     private class RequestException extends Exception
     {
         private String text;
+    }
+
+    /**
+     * 解密自定义HTTP请求头
+     *
+     * @param request 请求
+     * @return 解密后的请求头Map
+     */
+    private Map<String, String> decryptHeaders(HttpServletRequest request)
+    {
+        Map<String, String> headers = new HashMap<>();
+        Enumeration<String> keys = request.getHeaderNames();
+        while (keys.hasMoreElements())
+        {
+            String key = keys.nextElement();
+            String val = request.getHeader(key);
+
+            if (key.startsWith("{enc}"))
+            {
+                String decryptedKey = server.getEncryptor().decrypt(key.substring(4));
+                String decryptedVal = server.getEncryptor().decrypt(val);
+                headers.put(decryptedKey, decryptedVal);
+            }
+            else headers.put(key, val);
+        }
+        return headers;
     }
 }
