@@ -1,5 +1,8 @@
 package cc.moecraft.livelocation;
 
+import cc.moecraft.livelocation.database.model.DataLatest;
+import cc.moecraft.livelocation.database.model.DataLog;
+import cc.moecraft.livelocation.utils.encryption.Encryptor;
 import cc.moecraft.utils.FileUtils;
 import cc.moecraft.utils.cli.Args;
 import cc.moecraft.utils.cli.ArgsUtils;
@@ -98,10 +101,42 @@ public class HyLiveLocationLauncher
         // 初始化服务器
         server = new HyLiveLocationServer(new HLLConfig(port, password, debug, dbUrl, dbUsr, dbPwd));
 
-        // 启动服务器
+        // Start操作, 启动服务器
         if (operation.equals("start"))
         {
             server.start();
+        }
+
+        // Migrate操作,
+        if (operation.equals("migrate"))
+        {
+            if (!options.containsKey("old-password")) return "Old password is undefined for migration";
+            String oldPassword = options.get("old-password");
+
+            Encryptor o = new Encryptor(oldPassword);
+            Encryptor n = new Encryptor(password);
+
+            // 初始化数据库
+            server.getDatabaseInitializer().initialize();
+
+            int count = 0;
+
+            for (DataLatest dataLatest : new DataLatest().findAll())
+            {
+                dataLatest.setLocationDataset(n.encrypt(o.decrypt(dataLatest.getLocationDataset())));
+                dataLatest.update();
+                System.out.println("Updated " + (count ++) + " data_latest records.");
+            }
+
+            count = 0;
+
+            for (DataLog dataLog : new DataLog().findAll())
+            {
+                dataLog.setLocationDataset(n.encrypt(o.decrypt(dataLog.getLocationDataset())));
+                dataLog.update();
+                System.out.println("Updated " + (count ++) + " data_log records.");
+            }
+            return "Migration complete";
         }
 
         return "All done.";
