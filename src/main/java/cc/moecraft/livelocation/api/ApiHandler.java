@@ -59,6 +59,9 @@ public class ApiHandler extends AbstractHandler
                 // Obtain Content.
                 String content = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
 
+                // Decrypt Content.
+                if (content.startsWith("{enc}")) content = server.getEncryptor().decrypt(content.substring(4));
+
                 // Decrypt Headers.
                 Map<String, String> headers = decryptHeaders(request);
 
