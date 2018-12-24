@@ -119,7 +119,7 @@ public class HyLiveLocationLauncher
             // 初始化数据库
             server.getDatabaseInitializer().initialize();
 
-            int count = 0;
+            int count = 1;
 
             for (DataLatest dataLatest : new DataLatest().findAll())
             {
@@ -128,7 +128,7 @@ public class HyLiveLocationLauncher
                 System.out.println("Updated " + (count ++) + " data_latest records.");
             }
 
-            count = 0;
+            count = 1;
 
             for (DataLog dataLog : new DataLog().findAll())
             {
