@@ -1,4 +1,4 @@
-import cc.moecraft.livelocation.utils.CryptUtils;
+import cc.moecraft.livelocation.utils.encryption.CryptUtils;
 
 /**
  * 此类由 Hykilpikonna 在 2018/12/22 创建!

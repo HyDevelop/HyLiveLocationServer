@@ -3,7 +3,7 @@ package cc.moecraft.livelocation;
 import cc.moecraft.livelocation.api.ApiHandler;
 import cc.moecraft.livelocation.api.nodes.misc.NodeTest;
 import cc.moecraft.livelocation.database.DatabaseInitializer;
-import cc.moecraft.livelocation.utils.CryptUtils;
+import cc.moecraft.livelocation.utils.encryption.CryptUtils;
 import cc.moecraft.logger.HyLogger;
 import cc.moecraft.logger.LoggerInstanceManager;
 import cc.moecraft.logger.environments.ColorSupportLevel;

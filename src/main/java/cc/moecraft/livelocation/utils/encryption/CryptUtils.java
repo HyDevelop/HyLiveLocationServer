@@ -1,4 +1,4 @@
-package cc.moecraft.livelocation.utils;
+package cc.moecraft.livelocation.utils.encryption;
 
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
