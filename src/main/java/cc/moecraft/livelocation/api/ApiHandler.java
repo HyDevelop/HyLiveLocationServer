@@ -62,10 +62,10 @@ public class ApiHandler extends AbstractHandler
                 String content = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
 
                 // Decrypt Content.
-                if (content.startsWith("{enc}")) content = server.getEncryptor().decrypt(content.substring(4));
 
                 // Decrypt Headers.
                 Map<String, String> headers = decryptHeaders(request);
+                if (content.startsWith("{enc}")) content = server.getEncryptor().decrypt(content.substring(5));
 
                 // Debug output
                 logger.debug("Request received: {} : {}", node, content);
@@ -121,7 +121,7 @@ public class ApiHandler extends AbstractHandler
 
             if (key.startsWith("{enc}"))
             {
-                String decryptedKey = server.getEncryptor().decrypt(key.substring(4));
+                String decryptedKey = server.getEncryptor().decrypt(key.substring(5));
                 String decryptedVal = server.getEncryptor().decrypt(val);
                 headers.put(decryptedKey, decryptedVal);
             }
