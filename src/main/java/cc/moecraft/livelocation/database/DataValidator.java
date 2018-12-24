@@ -39,7 +39,7 @@ public class DataValidator
      * Validate user login
      *  - Creates a user info entry if it doesn't exist.
      */
-    public static void validateUser(String username)
+    public static UserInfo validateUser(String username)
     {
         UserInfo userInfo = new UserInfo().findById(username);
         if (userInfo == null)
@@ -49,5 +49,6 @@ public class DataValidator
             userInfo.updateLastActive();
             userInfo.save();
         }
+        return userInfo;
     }
 }
