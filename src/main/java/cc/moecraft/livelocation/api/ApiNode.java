@@ -1,7 +1,5 @@
 package cc.moecraft.livelocation.api;
 
-import javax.servlet.http.HttpServletRequest;
-
 /**
  * 此类由 Hykilpikonna 在 2018/10/06 创建!
  * Created by Hykilpikonna on 2018/10/06!
@@ -24,9 +22,8 @@ public interface ApiNode
     /**
      * Process an api request.
      *
-     * @param request API request
-     * @param content Content submitted
+     * @param access Api access.
      * @return Result.
      */
-    public String process(HttpServletRequest request, String content);
+    public String process(ApiAccess access);
 }
