@@ -8,7 +8,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static cc.moecraft.livelocation.utils.UrlUtils.urlDecode;
 import static cc.moecraft.livelocation.utils.UrlUtils.urlEncode;
+import static java.lang.System.lineSeparator;
+import static java.util.stream.Collectors.joining;
 
 /**
  * 此类由 Hykilpikonna 在 2018/12/24 创建!
@@ -80,18 +83,8 @@ public class HLLApiClient
             }
 
             // 获取回复
-            InputStream inputStream = connection.getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-            StringBuilder responseBody = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null)
-            {
-                responseBody.append(line).append("\n");
-            }
-            reader.close();
-
-            // 去掉最后多余的换行
-            return responseBody.toString().substring(0, responseBody.length() - 1);
+            return urlDecode(new BufferedReader(new InputStreamReader(connection.getInputStream()))
+                    .lines().collect(joining(lineSeparator())));
         }
         catch (IOException e)
         {

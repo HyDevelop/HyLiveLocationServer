@@ -13,9 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static cc.moecraft.livelocation.utils.UrlUtils.urlDecode;
+import static java.lang.System.lineSeparator;
+import static java.util.stream.Collectors.joining;
 
 /**
  * 此类由 Hykilpikonna 在 2018/10/06 创建!
@@ -61,8 +62,8 @@ public class ApiHandler extends AbstractHandler
                 ApiNode node = manager.getNode(nodeName);
                 if (node == null) throw new RequestException("Node " + nodeName + " is not a valid api node.");
 
-                // Obtain Content. TODO: use this algorithm to read from client
-                String content = urlDecode(request.getReader().lines().collect(Collectors.joining(System.lineSeparator())));
+                // Obtain Content
+                String content = urlDecode(request.getReader().lines().collect(joining(lineSeparator())));
 
                 // Decrypt Content.
                 if (content.startsWith("{enc}")) content = server.getEncryptor().decrypt(content.substring(5));
