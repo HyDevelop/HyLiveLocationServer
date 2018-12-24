@@ -61,8 +61,8 @@ public class ApiHandler extends AbstractHandler
                 ApiNode node = manager.getNode(nodeName);
                 if (node == null) throw new RequestException("Node " + nodeName + " is not a valid api node.");
 
-                // Obtain Content.
-                String content = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+                // Obtain Content. TODO: use this algorithm to read from client
+                String content = urlDecode(request.getReader().lines().collect(Collectors.joining(System.lineSeparator())));
 
                 // Decrypt Content.
                 if (content.startsWith("{enc}")) content = server.getEncryptor().decrypt(content.substring(5));
