@@ -35,8 +35,6 @@ public class NodeSetLocationDataset extends HLLApiNode
     @Override
     public String process(HttpServletRequest request, String content)
     {
-        if (!content.equals("Where am I?")) return "Who are you?";
-
         // Parse dataset
         String json = server.decrypt(request.getHeader("dataset"));
         LocationDataset dataset = GSON_READ.fromJson(json, LocationDataset.class);
