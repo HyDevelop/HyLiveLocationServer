@@ -39,6 +39,16 @@ public class NodeSetLocationDataset extends HLLApiNode
         LocationDataset dataset = new Gson().fromJson(json, LocationDataset.class);
 
         DataLatest last = new DataLatest().findById(dataset.getUsername());
+        if (last != null)
+        {
+            DataLog dataLog = new DataLog();
+            dataLog.setUsername(last.getUsername());
+            dataLog.setSubmitIp(last.getSubmitIp());
+            dataLog.setSubmitTime(last.getSubmitTime());
+            dataLog.setLocationDataset(last.getLocationDataset());
+            dataLog.save();
+            last.delete();
+        }
 
 
 
