@@ -1,4 +1,5 @@
 import cc.moecraft.livelocation.client.HLLApiClient;
+import cc.moecraft.livelocation.dataset.LocationDataset;
 import cc.moecraft.livelocation.utils.encryption.Encryptor;
 
 /**
@@ -15,6 +16,7 @@ public class HLLApiClientTester
     {
         HLLApiClient client = new HLLApiClient("localhost:19486/api", new Encryptor("default-pw"));
         System.out.println(client.send("misc.test", "Test request body", "something", "someValue"));
+        System.out.println(client.sendSetLocationDataset(new LocationDataset("testUser", 47d, -12d)));
 
         /*HttpRequest request = HttpUtil.createPost("localhost:19486/api");
         request.header("node", "misc.test").header("something", "someValue").body("Test request body");
