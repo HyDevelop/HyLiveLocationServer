@@ -55,6 +55,9 @@ public class NodeGetUserLocationHistory extends HLLApiNode
         final ArrayList<LocationDataset> locationDatasets = new ArrayList<>();
         new DataLog().find(sql).forEach(dataLog -> locationDatasets.add(new LocationDataset(server.getEncryptor(), dataLog)));
 
+        // 排序
+        locationDatasets.sort(LocationDataset::compareTo);
+
         return GSON_WRITE.toJson(locationDatasets);
     }
 }
