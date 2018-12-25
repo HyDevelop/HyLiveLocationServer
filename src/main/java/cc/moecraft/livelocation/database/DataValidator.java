@@ -1,5 +1,6 @@
 package cc.moecraft.livelocation.database;
 
+import cc.moecraft.livelocation.HyLiveLocationServer;
 import cc.moecraft.livelocation.database.model.DataLatest;
 import cc.moecraft.livelocation.database.model.DataLog;
 import cc.moecraft.livelocation.database.model.UserInfo;
@@ -20,20 +21,25 @@ public class DataValidator
      *
      * @param username Username
      */
-    public static void moveLastToLogs(String username)
+    public static void moveLastToLogs(HyLiveLocationServer server, String username)
     {
+        // Find last latest upload
         DataLatest last = new DataLatest().findById(username);
-        if (last != null)
-        {
-            DataLog dataLog = new DataLog();
-            dataLog.setUsername(last.getUsername());
-            dataLog.setSubmitIp(last.getSubmitIp());
-            dataLog.setSubmitTime(last.getSubmitTime());
-            dataLog.setLatitude(last.getLatitude());
-            dataLog.setLongitude(last.getLongitude());
-            dataLog.save();
-            last.delete();
-        }
+        if (last == null) return;
+
+        // Find last log
+        DataLog lastLog = new DataLog().findLatest(username);
+        if (lastLog == null || last.getSubmitTime() - lastLog.getSubmitTime() < server.getConfig().getLocationLogTime()) return;
+
+        // Record log
+        DataLog dataLog = new DataLog();
+        dataLog.setUsername(last.getUsername());
+        dataLog.setSubmitIp(last.getSubmitIp());
+        dataLog.setSubmitTime(last.getSubmitTime());
+        dataLog.setLatitude(last.getLatitude());
+        dataLog.setLongitude(last.getLongitude());
+        dataLog.save();
+        last.delete();
     }
 
     /**
