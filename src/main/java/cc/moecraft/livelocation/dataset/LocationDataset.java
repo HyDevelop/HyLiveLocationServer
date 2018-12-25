@@ -20,7 +20,7 @@ import static java.lang.Double.parseDouble;
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class LocationDataset
+public class LocationDataset implements Comparable<LocationDataset>
 {
     private final String username;
     private final Double latitude; // 纬度
@@ -54,5 +54,11 @@ public class LocationDataset
                 parseDouble(encryptor.decrypt(dataLog.getLatitude())),
                 parseDouble(encryptor.decrypt(dataLog.getLongitude())),
                 dataLog.getSubmitIp(), dataLog.getSubmitTime());
+    }
+
+    @Override
+    public int compareTo(LocationDataset o)
+    {
+        return submitTime.equals(o.submitTime) ? 0 : submitTime > o.submitTime ? -1 : 1;
     }
 }
