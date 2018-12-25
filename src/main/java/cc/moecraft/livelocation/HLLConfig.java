@@ -1,7 +1,6 @@
 package cc.moecraft.livelocation;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 /**
  * 此类由 Hykilpikonna 在 2018/12/22 创建!
@@ -13,6 +12,9 @@ import lombok.Data;
  */
 @Data
 @Builder
+@AllArgsConstructor
+@RequiredArgsConstructor
+@NoArgsConstructor
 public class HLLConfig
 {
     // 服务器配置
