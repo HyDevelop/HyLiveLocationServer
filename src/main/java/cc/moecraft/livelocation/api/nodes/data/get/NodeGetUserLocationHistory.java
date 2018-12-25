@@ -48,7 +48,7 @@ public class NodeGetUserLocationHistory extends HLLApiNode
         long ending = parseLong(access.getHeaders().getOrDefault("end", currentTimeMillis() + ""));
 
         // 创建SQL语句
-        String sql = resolve("SELECT * FROM data_log WHERE username==\"{}\" AND submit_time>={} AND submit_time<={}",
+        String sql = resolve("SELECT * FROM data_log WHERE username=\"{}\" AND submit_time>={} AND submit_time<={}",
                 username, starting, ending);
 
         // 在数据库中找到
