@@ -41,4 +41,18 @@ public class LocationDataset
                 parseDouble(encryptor.decrypt(dataLatest.getLongitude())),
                 dataLatest.getSubmitIp(), dataLatest.getSubmitTime());
     }
+
+    /**
+     * 从数据库Model对象创建一个Dataset对象
+     *
+     * @param encryptor 解密工具
+     * @param dataLog 位置信息
+     */
+    public LocationDataset(Encryptor encryptor, DataLog dataLog)
+    {
+        this(dataLog.getUsername(),
+                parseDouble(encryptor.decrypt(dataLog.getLatitude())),
+                parseDouble(encryptor.decrypt(dataLog.getLongitude())),
+                dataLog.getSubmitIp(), dataLog.getSubmitTime());
+    }
 }
