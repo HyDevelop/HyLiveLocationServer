@@ -24,6 +24,7 @@ public class Base64C
                 .replace("=", "")
                 .replace("+", "-")
                 .replace("/", "_")
+                .replaceAll("[\\s*\t\n\r]", "");
     }
 
     public static String encodeBase64C(String text)
