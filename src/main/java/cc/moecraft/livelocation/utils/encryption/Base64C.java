@@ -33,6 +33,7 @@ public class Base64C
 
     public static byte[] decodeBase64C(String text)
     {
+        if (text.length() % 4 != 0) text += repeat("=", 4 - text.length() % 4);
         try
         {
             return new BASE64Decoder().decodeBuffer(text
