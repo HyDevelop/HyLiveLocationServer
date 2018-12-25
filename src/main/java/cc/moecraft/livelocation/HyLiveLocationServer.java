@@ -30,7 +30,7 @@ public class HyLiveLocationServer
     private final HLLConfig config;
 
     private final LoggerInstanceManager lim = new LoggerInstanceManager(
-            new ConsoleColoredEnv(ColorSupportLevel.DEFAULT),
+            new ConsoleColoredEnv(ColorSupportLevel.FORCED),
             new FileEnv("./logs/", "HyLiveLocationServer.log"));
 
     private final HyLogger logger;
