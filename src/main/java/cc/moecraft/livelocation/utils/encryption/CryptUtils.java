@@ -18,6 +18,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  *
  * @author Hykilpikonna
  */
+@SuppressWarnings("WeakerAccess")
 public class CryptUtils
 {
     /**
