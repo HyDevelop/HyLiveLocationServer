@@ -23,7 +23,7 @@ public class NodeGetUserLocation extends HLLApiNode
     @Override
     public String nodeName()
     {
-        return "data.get.user-location";
+        return "data.get.user.location";
     }
 
     @Override

@@ -3,6 +3,7 @@ package cc.moecraft.livelocation.dataset;
 import cc.moecraft.livelocation.database.model.UserInfo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 /**
  * 此类由 Hykilpikonna 在 2018/12/24 创建!
@@ -14,6 +15,7 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
+@RequiredArgsConstructor
 public class UserInfoDataset
 {
     private final String username;
