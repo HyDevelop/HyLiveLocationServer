@@ -17,4 +17,5 @@ public class UserInfoDataset
 {
     private final String username;
     private final String avatarUrl;
+    private Long lastActive = null;
 }
