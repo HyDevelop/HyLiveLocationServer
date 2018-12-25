@@ -22,9 +22,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.github.hydevelop</groupId>
+            <groupId>com.github.HyDevelop</groupId>
             <artifactId>HyLogger</artifactId>
-            <version>3.5.220</version>
+            <version>4.0.254</version>
         </dependency>
 
         <dependency>
