@@ -131,6 +131,4 @@ public class ApiHandler extends AbstractHandler
         }
         return headers;
     }
-
-
 }

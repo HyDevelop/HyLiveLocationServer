@@ -15,6 +15,7 @@ import static cc.moecraft.utils.StringUtils.repeat;
  *
  * @author Hykilpikonna
  */
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class Base64C
 {
     public static String encodeBase64C(byte[] bytes)
