@@ -199,4 +199,15 @@ public class HLLApiClient
     {
         return GSON_READ.fromJson(send("data.get.user.location", null, "username", username), LocationDataset.class);
     }
+
+    /**
+     * 获取用户信息
+     *
+     * @param username 用户名
+     * @return 用户信息
+     */
+    public UserInfoDataset getUserInfo(String username)
+    {
+        return GSON_READ.fromJson(send("data.get.user.info", null, "username", username), UserInfoDataset.class);
+    }
 }
