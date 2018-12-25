@@ -2,6 +2,7 @@ package cc.moecraft.livelocation.dataset;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 /**
  * 此类由 Hykilpikonna 在 2018/12/24 创建!
@@ -13,9 +14,12 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
+@RequiredArgsConstructor
 public class LocationDataset
 {
     private final String username;
     private final Double latitude; // 纬度
     private final Double longitude; // 经度
+    private String submitIp = null;
+    private Long submitTime = null;
 }
