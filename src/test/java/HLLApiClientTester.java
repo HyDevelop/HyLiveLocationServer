@@ -31,9 +31,6 @@ public class HLLApiClientTester
         System.out.println("\n------------------=[ Get User List Inactive ]=------------------");
         System.out.println(client.getUserListInactive());
 
-        System.out.println("\n------------------=[ Get User List None ]=------------------");
-        System.out.println(client.getUserList(true, true));
-
         System.out.println("\n------------------=[ Get User Location ]=------------------");
         System.out.println(client.getUserLocation("testUser"));
 
