@@ -39,7 +39,7 @@ public class NodeSetLocationDataset extends HLLApiNode
         LocationDataset dataset = GSON_READ.fromJson(json, LocationDataset.class);
 
         // Move last to logs
-        DataValidator.moveLastToLogs(dataset.getUsername());
+        DataValidator.moveLastToLogs(server, dataset.getUsername());
 
         // Verify user, and update last active date
         UserInfo userInfo = DataValidator.validateUser(dataset.getUsername());
