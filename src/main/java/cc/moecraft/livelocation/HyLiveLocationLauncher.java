@@ -19,6 +19,7 @@ import static cc.moecraft.livelocation.HLLConstants.GSON_READ;
 import static cc.moecraft.utils.cli.ResourceUtils.readResource;
 import static java.lang.Boolean.parseBoolean;
 import static java.lang.Integer.parseInt;
+import static java.lang.Long.parseLong;
 
 /**
  * 此类由 Hykilpikonna 在 2018/12/22 创建!
@@ -57,6 +58,7 @@ public class HyLiveLocationLauncher
         String dbUrl = options.getOrDefault("db-url", null);
         String dbUsr = options.getOrDefault("db-usr", null);
         String dbPwd = options.getOrDefault("db-pwd", null);
+        long activeTimeout = parseLong(options.getOrDefault("active-timeout", "300000"));
 
         // 从文件读取配置
         boolean hasFile = options.containsKey("file");
@@ -74,7 +76,7 @@ public class HyLiveLocationLauncher
                 if (dbUsr == null) dbUsr = "root";
                 if (dbPwd == null) dbPwd = "default-pw";
 
-                GSON_PRETTY.toJson(new HLLConfig(port, password, debug, dbUrl, dbUsr, dbPwd), writer);
+                GSON_PRETTY.toJson(new HLLConfig(port, password, debug, dbUrl, dbUsr, dbPwd, activeTimeout), writer);
                 return "Export Success!";
             }
         }
@@ -99,7 +101,7 @@ public class HyLiveLocationLauncher
         if (dbPwd == null) return "Database password is undefined";
 
         // 初始化服务器
-        server = new HyLiveLocationServer(new HLLConfig(port, password, debug, dbUrl, dbUsr, dbPwd));
+        server = new HyLiveLocationServer(new HLLConfig(port, password, debug, dbUrl, dbUsr, dbPwd, activeTimeout));
 
         // Start操作, 启动服务器
         if (operation.equals("start"))
