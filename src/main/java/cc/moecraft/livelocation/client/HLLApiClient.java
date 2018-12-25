@@ -145,4 +145,16 @@ public class HLLApiClient
     {
         return send("data.set.location-dataset", null, "dataset", GSON_WRITE.toJson(dataset));
     }
+
+    /**
+     * 获取用户列表
+     *
+     * @param activeOnly 是否只记录活跃用户
+     * @return 用户列表
+     */
+    public List<UserInfoDataset> getUserList(boolean activeOnly)
+    {
+        return GSON_READ.fromJson(send("data.get.user-list", null, "active-only", activeOnly),
+                new TypeToken<List<UserInfoDataset>>(){}.getType());
+    }
 }
