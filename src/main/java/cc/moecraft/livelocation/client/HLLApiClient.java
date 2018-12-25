@@ -189,5 +189,14 @@ public class HLLApiClient
         return getUserList(false, true);
     }
 
-
+    /**
+     * 获取用户位置信息
+     *
+     * @param username 用户名
+     * @return 用户位置
+     */
+    public LocationDataset getUserLocation(String username)
+    {
+        return GSON_READ.fromJson(send("data.get.user-location", null, "username", username), LocationDataset.class);
+    }
 }
