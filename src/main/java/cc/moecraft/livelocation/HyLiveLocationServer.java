@@ -5,6 +5,7 @@ import cc.moecraft.livelocation.api.nodes.data.set.NodeSetLocationDataset;
 import cc.moecraft.livelocation.api.nodes.data.set.NodeSetUserInfo;
 import cc.moecraft.livelocation.api.nodes.misc.NodeTest;
 import cc.moecraft.livelocation.database.DatabaseInitializer;
+import cc.moecraft.livelocation.utils.MiscUtils;
 import cc.moecraft.livelocation.utils.encryption.Encryptor;
 import cc.moecraft.logger.HyLogger;
 import cc.moecraft.logger.LoggerInstanceManager;
@@ -57,6 +58,9 @@ public class HyLiveLocationServer
      */
     public void start() throws Exception
     {
+        // 去掉Log
+        if (!config.isDebug()) MiscUtils.disableLogging();
+
         // 初始化数据库
         databaseInitializer.initialize();
 
