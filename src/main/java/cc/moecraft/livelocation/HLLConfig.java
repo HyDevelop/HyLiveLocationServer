@@ -26,4 +26,7 @@ public class HLLConfig
     private String dbUrl;
     private String dbUsr;
     private String dbPwd;
+
+    // 时间配置 (millis)
+    private long inactiveTimeout = 5 * 60 * 1000;
 }
