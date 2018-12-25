@@ -4,12 +4,18 @@ import cc.moecraft.livelocation.dataset.LocationDataset;
 import cc.moecraft.livelocation.dataset.UserInfoDataset;
 import cc.moecraft.livelocation.utils.UrlUtils;
 import cc.moecraft.livelocation.utils.encryption.Encryptor;
+import com.google.gson.reflect.TypeToken;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
+import static cc.moecraft.livelocation.HLLConstants.GSON_READ;
 import static cc.moecraft.livelocation.HLLConstants.GSON_WRITE;
 import static java.lang.System.lineSeparator;
 import static java.util.stream.Collectors.joining;
@@ -22,6 +28,7 @@ import static java.util.stream.Collectors.joining;
  *
  * @author Hykilpikonna
  */
+@SuppressWarnings("unused")
 public class HLLApiClient
 {
     private final URL url;
