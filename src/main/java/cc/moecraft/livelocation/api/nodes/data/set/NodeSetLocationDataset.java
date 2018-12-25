@@ -52,7 +52,7 @@ public class NodeSetLocationDataset extends HLLApiNode
         latest.setSubmitIp(access.getRequest().getRemoteAddr());
         latest.setSubmitTime(System.currentTimeMillis());
         latest.setLatitude(server.getEncryptor().encrypt(dataset.getLatitude()));
-        latest.setLatitude(server.getEncryptor().encrypt(dataset.getLongitude()));
+        latest.setLongitude(server.getEncryptor().encrypt(dataset.getLongitude()));
         latest.save();
 
         return "Success";
