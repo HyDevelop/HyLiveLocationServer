@@ -36,10 +36,13 @@ public class NodeGetUserList extends HLLApiNode
     public String process(ApiAccess access)
     {
         boolean activeOnly = parseBoolean(access.getHeaders().getOrDefault("active-only", "false"));
+        boolean inactiveOnly = parseBoolean(access.getHeaders().getOrDefault("inactive-only", "false"));
 
         // 创建SQL语句
         String sql = "SELECT * FROM user_info";
-        if (activeOnly) sql += " WHERE last_active>=" + (System.currentTimeMillis() - server.getConfig().getInactiveTimeout());
+        if (activeOnly || inactiveOnly) sql += " WHERE";
+        if (activeOnly) sql += " last_active>=" + (System.currentTimeMillis() - server.getConfig().getInactiveTimeout());
+        if (inactiveOnly) sql += " last_active<" + (System.currentTimeMillis() - server.getConfig().getInactiveTimeout());
 
         // 在数据库中找到
         final ArrayList<UserInfoDataset> userInfoDatasets = new ArrayList<>();
