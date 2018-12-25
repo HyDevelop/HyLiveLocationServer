@@ -29,7 +29,8 @@ public class DataValidator
             dataLog.setUsername(last.getUsername());
             dataLog.setSubmitIp(last.getSubmitIp());
             dataLog.setSubmitTime(last.getSubmitTime());
-            dataLog.setLocationDataset(last.getLocationDataset());
+            dataLog.setLatitude(last.getLatitude());
+            dataLog.setLongitude(last.getLongitude());
             dataLog.save();
             last.delete();
         }
