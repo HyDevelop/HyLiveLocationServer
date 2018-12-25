@@ -4,6 +4,7 @@ import cc.moecraft.livelocation.api.ApiHandler;
 import cc.moecraft.livelocation.api.nodes.data.get.NodeGetUserInfo;
 import cc.moecraft.livelocation.api.nodes.data.get.NodeGetUserList;
 import cc.moecraft.livelocation.api.nodes.data.get.NodeGetUserLocation;
+import cc.moecraft.livelocation.api.nodes.data.get.NodeGetUserLocationHistory;
 import cc.moecraft.livelocation.api.nodes.data.set.NodeSetLocationDataset;
 import cc.moecraft.livelocation.api.nodes.data.set.NodeSetUserInfo;
 import cc.moecraft.livelocation.api.nodes.misc.NodeTest;
@@ -78,6 +79,7 @@ public class HyLiveLocationServer
                 , new NodeGetUserList(this)
                 , new NodeGetUserInfo(this)
                 , new NodeGetUserLocation(this)
+                , new NodeGetUserLocationHistory(this)
         );
 
         // 创建Jetty服务器对象
