@@ -158,4 +158,36 @@ public class HLLApiClient
         return GSON_READ.fromJson(send("data.get.user-list", null, "active-only", activeOnly, "inactive-only", inactiveOnly),
                 new TypeToken<List<UserInfoDataset>>(){}.getType());
     }
+
+    /**
+     * 获取全部用户列表
+     *
+     * @return 用户列表
+     */
+    public List<UserInfoDataset> getUserListAll()
+    {
+        return getUserList(false, false);
+    }
+
+    /**
+     * 获取活跃用户列表
+     *
+     * @return 用户列表
+     */
+    public List<UserInfoDataset> getUserListActive()
+    {
+        return getUserList(true, false);
+    }
+
+    /**
+     * 获取不活跃用户列表
+     *
+     * @return 用户列表
+     */
+    public List<UserInfoDataset> getUserListInactive()
+    {
+        return getUserList(false, true);
+    }
+
+
 }
