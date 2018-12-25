@@ -39,7 +39,7 @@ public class NodeGetUserList extends HLLApiNode
 
         // 创建SQL语句
         String sql = "SELECT * FROM user_info";
-        if (activeOnly) sql += "WHERE last_active>=" + (System.currentTimeMillis() - server.getConfig().getInactiveTimeout());
+        if (activeOnly) sql += " WHERE last_active>=" + (System.currentTimeMillis() - server.getConfig().getInactiveTimeout());
 
         // 在数据库中找到
         final ArrayList<UserInfoDataset> userInfoDatasets = new ArrayList<>();
