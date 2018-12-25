@@ -15,15 +15,13 @@ public class HLLApiClientTester
     public static void main(String[] args)
     {
         HLLApiClient client = new HLLApiClient("localhost:19486/api", new Encryptor("default-pw"));
+        System.out.println("-------------------=[ Send Test Request ]=--------------------");
         System.out.println(client.send("misc.test", "Test request body", "something", "someValue"));
+
+        System.out.println("---------------=[ Update TestUser Location ]=-----------------");
         System.out.println(client.sendSetLocationDataset(new LocationDataset("testUser", 47d, -12d)));
+        // System.out.println(client.sendSetLocationDataset(new LocationDataset("inactiveUser", 45d, -12d)));
 
-        /*HttpRequest request = HttpUtil.createPost("localhost:19486/api");
-        request.header("node", "misc.test").header("something", "someValue").body("Test request body");
-        HttpResponse response = request.execute();
-        System.out.println(response);
 
-        // Incorrect usage
-        System.out.println(HttpUtil.get("localhost:19486/some-other-things"));*/
     }
 }
