@@ -15,11 +15,14 @@ import lombok.Data;
 @Builder
 public class HLLConfig
 {
+    // 服务器配置
     private int port;
     private String password;
 
-    private boolean debug;
+    // 日志配置
+    private boolean debug = false;
 
+    // 数据库配置
     private String dbUrl;
     private String dbUsr;
     private String dbPwd;
