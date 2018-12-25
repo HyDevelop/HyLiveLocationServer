@@ -22,6 +22,10 @@ public class HLLApiClientTester
         System.out.println(client.sendSetLocationDataset(new LocationDataset("testUser", 47d, -12d)));
         // System.out.println(client.sendSetLocationDataset(new LocationDataset("inactiveUser", 45d, -12d)));
 
+        System.out.println("---------------------=[ Get User List ]=----------------------");
+        System.out.println(client.getUserList(false));
 
+        System.out.println("------------------=[ Get User List Active ]=------------------");
+        System.out.println(client.getUserList(true));
     }
 }
