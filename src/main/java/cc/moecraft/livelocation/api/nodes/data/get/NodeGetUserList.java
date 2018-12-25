@@ -38,6 +38,9 @@ public class NodeGetUserList extends HLLApiNode
         boolean activeOnly = parseBoolean(access.getHeaders().getOrDefault("active-only", "false"));
         boolean inactiveOnly = parseBoolean(access.getHeaders().getOrDefault("inactive-only", "false"));
 
+        // 如果同时只获取活跃和不活跃的话, 就是什么都没有啦w
+        if (activeOnly && inactiveOnly) return GSON_WRITE.toJson(new ArrayList<>());
+
         // 创建SQL语句
         String sql = "SELECT * FROM user_info";
         if (activeOnly || inactiveOnly) sql += " WHERE";
