@@ -23,4 +23,6 @@ Where options include:
     -db-usr=<string>        Username for JDBC connection.
     -db-pwd=<string>        Password for JDBC connection.
 
+    -active-timeout=<long>  Timeout for a user to considered inactive. (In millis.)
+
     -old-password=<string>  Old password. This is used in operation "migrate"
