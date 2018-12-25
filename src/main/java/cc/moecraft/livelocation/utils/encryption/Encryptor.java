@@ -1,6 +1,8 @@
 package cc.moecraft.livelocation.utils.encryption;
 
-import lombok.AllArgsConstructor;
+import java.security.Key;
+
+import static cc.moecraft.livelocation.utils.encryption.CryptUtils.getKey;
 
 /**
  * 此类由 Hykilpikonna 在 2018/12/24 创建!
@@ -11,10 +13,14 @@ import lombok.AllArgsConstructor;
  * @author Hykilpikonna
  */
 @SuppressWarnings("unused")
-@AllArgsConstructor
 public class Encryptor
 {
-    private final String password;
+    private final Key secret;
+
+    public Encryptor(String password)
+    {
+        secret = getKey(password);
+    }
 
     /**
      * 用设好的密码加密
@@ -24,7 +30,7 @@ public class Encryptor
      */
     public String encrypt(String text)
     {
-        return CryptUtils.encrypt(text, password);
+        return CryptUtils.encrypt(text, secret);
     }
 
     /**
@@ -35,6 +41,6 @@ public class Encryptor
      */
     public String decrypt(String text)
     {
-        return CryptUtils.decrypt(text, password);
+        return CryptUtils.decrypt(text, secret);
     }
 }
