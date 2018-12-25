@@ -42,11 +42,10 @@ public class NodeGetUserLocationHistory extends HLLApiNode
         String username = access.getHeaders().get("username");
 
         // 默认从两天前开始
-        long starting = parseLong(access.getHeaders().getOrDefault("starting",
-                currentTimeMillis() - 2 * 24 * 60 * 60 * 1000 + ""));
+        long starting = parseLong(access.getHeaders().getOrDefault("start", currentTimeMillis() - 2 * 24 * 60 * 60 * 1000 + ""));
 
         // 默认从现在结束
-        long ending = parseLong(access.getHeaders().getOrDefault("ending", currentTimeMillis() + ""));
+        long ending = parseLong(access.getHeaders().getOrDefault("end", currentTimeMillis() + ""));
 
         // 创建SQL语句
         String sql = resolve("SELECT * FROM data_log WHERE username==\"{}\" AND submit_time>=\"{}\" AND submit_time<=\"{}\"",
