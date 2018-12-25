@@ -14,7 +14,6 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
-import static cc.moecraft.livelocation.utils.UrlUtils.urlDecode;
 import static java.lang.System.lineSeparator;
 import static java.util.stream.Collectors.joining;
 
@@ -63,7 +62,7 @@ public class ApiHandler extends AbstractHandler
                 if (node == null) throw new RequestException("Node " + nodeName + " is not a valid api node.");
 
                 // Obtain Content
-                String content = urlDecode(request.getReader().lines().collect(joining(lineSeparator())));
+                String content = request.getReader().lines().collect(joining(lineSeparator()));
 
                 // Decrypt Content.
                 if (content.startsWith("-enc-")) content = server.getEncryptor().decrypt(content.substring(5));
@@ -117,9 +116,8 @@ public class ApiHandler extends AbstractHandler
         Enumeration<String> keys = request.getHeaderNames();
         while (keys.hasMoreElements())
         {
-            String encryptedKey = keys.nextElement();
-            String key = urlDecode(encryptedKey);
-            String val = urlDecode(request.getHeader(encryptedKey));
+            String key = keys.nextElement();
+            String val = request.getHeader(key);
 
             if (key.startsWith("-enc-"))
             {
