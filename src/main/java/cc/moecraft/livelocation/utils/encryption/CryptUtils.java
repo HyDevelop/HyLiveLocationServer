@@ -59,6 +59,14 @@ public class CryptUtils
         }
     }
 
+    /**
+     * 加密一段明文字符串
+     *
+     * @param text 明文
+     * @param secret 密钥
+     * @return 密文
+     * @throws Exception 加密相关的异常
+     */
     private static String encryptHelper(String text, Key secret) throws Exception
     {
         Cipher cipher = Cipher.getInstance("AES");
@@ -66,6 +74,14 @@ public class CryptUtils
         return encodeBase64C(cipher.doFinal(text.getBytes(UTF_8)));
     }
 
+    /**
+     * 解密一段密文字符串
+     *
+     * @param text 密文
+     * @param secret 密钥
+     * @return 明文
+     * @throws Exception 加密相关的异常
+     */
     private static String decryptHelper(String text, Key secret) throws Exception
     {
         Cipher cipher = Cipher.getInstance("AES");
