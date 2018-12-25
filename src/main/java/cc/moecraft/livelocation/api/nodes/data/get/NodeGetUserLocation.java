@@ -4,6 +4,9 @@ import cc.moecraft.livelocation.HyLiveLocationServer;
 import cc.moecraft.livelocation.api.ApiAccess;
 import cc.moecraft.livelocation.api.HLLApiNode;
 import cc.moecraft.livelocation.database.model.DataLatest;
+import cc.moecraft.livelocation.dataset.LocationDataset;
+
+import static cc.moecraft.livelocation.HLLConstants.GSON_WRITE;
 
 /**
  * 此类由 Hykilpikonna 在 2018/12/25 创建!
@@ -35,6 +38,6 @@ public class NodeGetUserLocation extends HLLApiNode
         DataLatest dataLatest = new DataLatest().findById(access.getHeaders().get("username"));
         if (dataLatest == null) return "Error: User does not exist";
 
-        return server.getEncryptor().decrypt(dataLatest.getLocationDataset());
+        return GSON_WRITE.toJson(new LocationDataset(server.getEncryptor(), dataLatest));
     }
 }
