@@ -9,7 +9,6 @@ import cc.moecraft.livelocation.database.model.UserInfo;
 import cc.moecraft.livelocation.dataset.LocationDataset;
 
 import static cc.moecraft.livelocation.HLLConstants.GSON_READ;
-import static cc.moecraft.livelocation.HLLConstants.GSON_WRITE;
 
 /**
  * 此类由 Hykilpikonna 在 2018/12/22 创建!
@@ -52,7 +51,8 @@ public class NodeSetLocationDataset extends HLLApiNode
         latest.setUsername(dataset.getUsername());
         latest.setSubmitIp(access.getRequest().getRemoteAddr());
         latest.setSubmitTime(System.currentTimeMillis());
-        latest.setLocationDataset(server.getEncryptor().encrypt(GSON_WRITE.toJson(dataset)));
+        latest.setLatitude(server.getEncryptor().encrypt(dataset.getLatitude()));
+        latest.setLatitude(server.getEncryptor().encrypt(dataset.getLongitude()));
         latest.save();
 
         return "Success";
