@@ -125,7 +125,8 @@ public class HyLiveLocationLauncher
 
             for (DataLatest dataLatest : new DataLatest().findAll())
             {
-                dataLatest.setLocationDataset(n.encrypt(o.decrypt(dataLatest.getLocationDataset())));
+                dataLatest.setLongitude(n.encrypt(o.decrypt(dataLatest.getLongitude())));
+                dataLatest.setLatitude(n.encrypt(o.decrypt(dataLatest.getLatitude())));
                 dataLatest.update();
                 System.out.println("Updated " + (count ++) + " data_latest records.");
             }
@@ -134,7 +135,8 @@ public class HyLiveLocationLauncher
 
             for (DataLog dataLog : new DataLog().findAll())
             {
-                dataLog.setLocationDataset(n.encrypt(o.decrypt(dataLog.getLocationDataset())));
+                dataLog.setLongitude(n.encrypt(o.decrypt(dataLog.getLongitude())));
+                dataLog.setLatitude(n.encrypt(o.decrypt(dataLog.getLatitude())));
                 dataLog.update();
                 System.out.println("Updated " + (count ++) + " data_log records.");
             }
