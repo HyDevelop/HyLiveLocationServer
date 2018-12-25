@@ -58,7 +58,8 @@ public class HyLiveLocationLauncher
         String dbUrl = options.getOrDefault("db-url", null);
         String dbUsr = options.getOrDefault("db-usr", null);
         String dbPwd = options.getOrDefault("db-pwd", null);
-        long activeTimeout = parseLong(options.getOrDefault("active-timeout", "300000"));
+        long activeTimeout = parseLong(options.getOrDefault("active-timeout", "" + new HLLConfig().getInactiveTimeout()));
+        long locationLogTime = parseLong(options.getOrDefault("location-log-time", "" + new HLLConfig().getLocationLogTime()));
 
         // 从文件读取配置
         boolean hasFile = options.containsKey("file");
@@ -76,7 +77,7 @@ public class HyLiveLocationLauncher
                 if (dbUsr == null) dbUsr = "root";
                 if (dbPwd == null) dbPwd = "default-pw";
 
-                GSON_PRETTY.toJson(new HLLConfig(port, password, debug, dbUrl, dbUsr, dbPwd, activeTimeout), writer);
+                GSON_PRETTY.toJson(new HLLConfig(port, password, debug, dbUrl, dbUsr, dbPwd, activeTimeout, locationLogTime), writer);
                 return "Export Success!";
             }
         }
@@ -92,6 +93,8 @@ public class HyLiveLocationLauncher
             dbUrl = config.getDbUrl();
             dbUsr = config.getDbUsr();
             dbPwd = config.getDbPwd();
+            activeTimeout = config.getInactiveTimeout();
+            locationLogTime = config.getLocationLogTime();
         }
 
         // 检查是否定义了密码
@@ -101,7 +104,7 @@ public class HyLiveLocationLauncher
         if (dbPwd == null) return "Database password is undefined";
 
         // 初始化服务器
-        server = new HyLiveLocationServer(new HLLConfig(port, password, debug, dbUrl, dbUsr, dbPwd, activeTimeout));
+        server = new HyLiveLocationServer(new HLLConfig(port, password, debug, dbUrl, dbUsr, dbPwd, activeTimeout, locationLogTime));
 
         // Start操作, 启动服务器
         if (operation.equals("start"))
