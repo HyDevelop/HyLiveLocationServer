@@ -28,5 +28,6 @@ public class HLLConfig
     private String dbPwd;
 
     // 时间配置 (millis)
-    private long inactiveTimeout = 5 * 60 * 1000;
+    private long inactiveTimeout = 5 * 60 * 1000; // 5分钟没有提交数据算为不活跃
+    private long locationLogTime = 30 * 60 * 1000; // 30分钟记录一次Log
 }
