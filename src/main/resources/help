@@ -24,5 +24,6 @@ Where options include:
     -db-pwd=<string>        Password for JDBC connection.
 
     -active-timeout=<long>  Timeout for a user to considered inactive. (In millis.)
+    -location-log=<long>    How long does it wait before logging a location.
 
     -old-password=<string>  Old password. This is used in operation "migrate"
