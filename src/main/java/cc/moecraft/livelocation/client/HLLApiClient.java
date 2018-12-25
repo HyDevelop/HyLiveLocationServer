@@ -227,4 +227,16 @@ public class HLLApiClient
                 "end", end
         ), new TypeToken<List<LocationDataset>>(){}.getType());
     }
+
+    /**
+     * 获取用户两天内的位置历史
+     *
+     * @param username 用户名
+     * @return 位置历史 (按时间排序)
+     */
+    public List<LocationDataset> getUserLocationHistory(String username)
+    {
+        return GSON_READ.fromJson(send("data.get.user.location.history", null, "username", username),
+                new TypeToken<List<LocationDataset>>(){}.getType());
+    }
 }
