@@ -150,11 +150,12 @@ public class HLLApiClient
      * 获取用户列表
      *
      * @param activeOnly 是否只记录活跃用户
+     * @param inactiveOnly 是否只记录不活跃用户
      * @return 用户列表
      */
-    public List<UserInfoDataset> getUserList(boolean activeOnly)
+    public List<UserInfoDataset> getUserList(boolean activeOnly, boolean inactiveOnly)
     {
-        return GSON_READ.fromJson(send("data.get.user-list", null, "active-only", activeOnly),
+        return GSON_READ.fromJson(send("data.get.user-list", null, "active-only", activeOnly, "inactive-only", inactiveOnly),
                 new TypeToken<List<UserInfoDataset>>(){}.getType());
     }
 }
