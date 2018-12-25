@@ -37,13 +37,18 @@ public class NodeGetUserLocationHistory extends HLLApiNode
     @Override
     public String process(ApiAccess access)
     {
+        // 获取用户名
         if (!access.getHeaders().containsKey("username")) return "Error: Username not specified";
-        long starting = parseLong(access.getHeaders().getOrDefault("starting",
-                currentTimeMillis() - 2 * 24 * 60 * 60 * 1000 + ""));
-        long ending = parseLong(access.getHeaders().getOrDefault("ending",
-                currentTimeMillis() + ""));
         String username = access.getHeaders().get("username");
 
+        // 默认从两天前开始
+        long starting = parseLong(access.getHeaders().getOrDefault("starting",
+                currentTimeMillis() - 2 * 24 * 60 * 60 * 1000 + ""));
+
+        // 默认从现在结束
+        long ending = parseLong(access.getHeaders().getOrDefault("ending", currentTimeMillis() + ""));
+
+        // 创建SQL语句
         String sql = resolve("SELECT * FROM data_log WHERE username==\"{}\" AND submit_time>=\"{}\" AND submit_time<=\"{}\"",
                 username, starting, ending);
 
