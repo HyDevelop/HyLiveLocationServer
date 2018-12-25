@@ -1,14 +1,14 @@
 package cc.moecraft.livelocation.utils.encryption;
 
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
-
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
-import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+
+import static cc.moecraft.livelocation.utils.encryption.Base64C.decodeBase64C;
+import static cc.moecraft.livelocation.utils.encryption.Base64C.encodeBase64C;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
  * 此类由 Hykilpikonna 在 2018/12/22 创建!
@@ -63,7 +63,7 @@ public class CryptUtils
         Key secret = getKey(password);
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.ENCRYPT_MODE, secret);
-        return new BASE64Encoder().encode(cipher.doFinal(text.getBytes(StandardCharsets.UTF_8)));
+        return encodeBase64C(cipher.doFinal(text.getBytes(UTF_8)));
     }
 
     private static String decryptHelper(String text, String password) throws Exception
@@ -71,7 +71,7 @@ public class CryptUtils
         Key secret = getKey(password);
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.DECRYPT_MODE, secret);
-        return new String(cipher.doFinal(new BASE64Decoder().decodeBuffer(text)), StandardCharsets.UTF_8);
+        return new String(cipher.doFinal(decodeBase64C(text)), UTF_8);
     }
 
     /**
