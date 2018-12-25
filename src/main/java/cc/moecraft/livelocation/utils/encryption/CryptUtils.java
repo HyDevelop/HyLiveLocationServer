@@ -36,7 +36,8 @@ public class CryptUtils
         }
         catch (Exception e)
         {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return null;
         }
     }
 
@@ -55,7 +56,8 @@ public class CryptUtils
         }
         catch (Exception e)
         {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return null;
         }
     }
 
