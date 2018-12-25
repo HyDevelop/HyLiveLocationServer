@@ -13,8 +13,6 @@ import lombok.*;
 @Data
 @Builder
 @AllArgsConstructor
-@RequiredArgsConstructor
-@NoArgsConstructor
 public class HLLConfig
 {
     // 服务器配置
