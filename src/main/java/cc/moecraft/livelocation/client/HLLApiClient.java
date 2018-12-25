@@ -11,8 +11,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import static cc.moecraft.livelocation.HLLConstants.GSON_WRITE;
-import static cc.moecraft.livelocation.utils.UrlUtils.urlDecode;
-import static cc.moecraft.livelocation.utils.UrlUtils.urlEncode;
 import static java.lang.System.lineSeparator;
 import static java.util.stream.Collectors.joining;
 
@@ -93,8 +91,8 @@ public class HLLApiClient
             }
 
             // 获取回复
-            return urlDecode(new BufferedReader(new InputStreamReader(connection.getInputStream()))
-                    .lines().collect(joining(lineSeparator())));
+            return new BufferedReader(new InputStreamReader(connection.getInputStream()))
+                    .lines().collect(joining(lineSeparator()));
         }
         catch (IOException e)
         {
@@ -105,7 +103,7 @@ public class HLLApiClient
 
     private String encrypt(String text)
     {
-        return urlEncode(encryptor.encrypt(text));
+        return encryptor.encrypt(text);
     }
 
     /**
