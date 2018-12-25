@@ -34,6 +34,17 @@ public class Encryptor
     }
 
     /**
+     * 用设好的密码加密
+     *
+     * @param text 明文
+     * @return 密文
+     */
+    public String encrypt(Object text)
+    {
+        return encrypt(text.toString());
+    }
+
+    /**
      * 用设好的密码解密
      *
      * @param text 明文
@@ -42,5 +53,16 @@ public class Encryptor
     public String decrypt(String text)
     {
         return CryptUtils.decrypt(text, secret);
+    }
+
+    /**
+     * 用设好的密码解密
+     *
+     * @param text 明文
+     * @return 密文
+     */
+    public String decrypt(Object text)
+    {
+        return encrypt(text.toString());
     }
 }
