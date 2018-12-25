@@ -1,4 +1,4 @@
-import cc.moecraft.livelocation.utils.encryption.CryptUtils;
+import cc.moecraft.livelocation.utils.encryption.Encryptor;
 
 /**
  * 此类由 Hykilpikonna 在 2018/12/22 创建!
@@ -15,11 +15,13 @@ public class CryptUtilsTest
         String text = "Hello world \n\t Test";
         String password = "adasfasfasdfasfas11=2590=6;g'ert";
 
-        String encrypted = CryptUtils.encrypt(text, password);
+        Encryptor encryptor = new Encryptor(password);
+
+        String encrypted = encryptor.encrypt(text);
         System.out.println("原文: " + text);
         System.out.println("---------------------");
         System.out.println("加密后: " + encrypted);
         System.out.println("---------------------");
-        System.out.println("解密后: " + CryptUtils.decrypt(encrypted, password));
+        System.out.println("解密后: " + encryptor.decrypt(encrypted));
     }
 }
