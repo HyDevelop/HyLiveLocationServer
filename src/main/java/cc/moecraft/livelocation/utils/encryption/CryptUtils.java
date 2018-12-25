@@ -24,14 +24,14 @@ public class CryptUtils
      * 加密一段字符串
      *
      * @param text 明文
-     * @param password 密码
+     * @param secret 密钥
      * @return 密文
      */
-    public static String encrypt(String text, String password)
+    public static String encrypt(String text, Key secret)
     {
         try
         {
-            return encryptHelper(text, password);
+            return encryptHelper(text, secret);
         }
         catch (Exception e)
         {
@@ -43,14 +43,14 @@ public class CryptUtils
      * 解密一段字符串
      *
      * @param text 密文
-     * @param password 密码
+     * @param secret 密钥
      * @return 明文
      */
-    public static String decrypt(String text, String password)
+    public static String decrypt(String text, Key secret)
     {
         try
         {
-            return decryptHelper(text, password);
+            return decryptHelper(text, secret);
         }
         catch (Exception e)
         {
@@ -58,17 +58,15 @@ public class CryptUtils
         }
     }
 
-    private static String encryptHelper(String text, String password) throws Exception
+    private static String encryptHelper(String text, Key secret) throws Exception
     {
-        Key secret = getKey(password);
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.ENCRYPT_MODE, secret);
         return encodeBase64C(cipher.doFinal(text.getBytes(UTF_8)));
     }
 
-    private static String decryptHelper(String text, String password) throws Exception
+    private static String decryptHelper(String text, Key secret) throws Exception
     {
-        Key secret = getKey(password);
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.DECRYPT_MODE, secret);
         return new String(cipher.doFinal(decodeBase64C(text)), UTF_8);
@@ -80,7 +78,7 @@ public class CryptUtils
      * @param keySeed 密码
      * @return Key
      */
-    private static Key getKey(String keySeed)
+    public static Key getKey(String keySeed)
     {
         if (keySeed == null) keySeed = System.getenv("AES_SYS_KEY");
         if (keySeed == null) keySeed = System.getProperty("AES_SYS_KEY");
