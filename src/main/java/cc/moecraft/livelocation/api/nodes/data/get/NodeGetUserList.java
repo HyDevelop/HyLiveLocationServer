@@ -29,7 +29,7 @@ public class NodeGetUserList extends HLLApiNode
     @Override
     public String nodeName()
     {
-        return "data.get.user-list";
+        return "data.get.user.list";
     }
 
     @Override

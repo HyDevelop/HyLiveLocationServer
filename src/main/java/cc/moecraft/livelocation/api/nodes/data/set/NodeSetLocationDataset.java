@@ -29,7 +29,7 @@ public class NodeSetLocationDataset extends HLLApiNode
     @Override
     public String nodeName()
     {
-        return "data.set.location-dataset";
+        return "data.set.user.location";
     }
 
     @Override

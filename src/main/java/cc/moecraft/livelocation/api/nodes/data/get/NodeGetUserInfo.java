@@ -26,7 +26,7 @@ public class NodeGetUserInfo extends HLLApiNode
     @Override
     public String nodeName()
     {
-        return "data.get.user-info";
+        return "data.get.user.info";
     }
 
     @Override

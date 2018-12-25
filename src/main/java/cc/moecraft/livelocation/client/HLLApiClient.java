@@ -132,7 +132,7 @@ public class HLLApiClient
      */
     public String sendSetUserInfo(UserInfoDataset dataset)
     {
-        return send("data.set.user-info", null, "dataset", GSON_WRITE.toJson(dataset));
+        return send("data.set.user.info", null, "dataset", GSON_WRITE.toJson(dataset));
     }
 
     /**
@@ -143,7 +143,7 @@ public class HLLApiClient
      */
     public String sendSetLocationDataset(LocationDataset dataset)
     {
-        return send("data.set.location-dataset", null, "dataset", GSON_WRITE.toJson(dataset));
+        return send("data.set.user.location", null, "dataset", GSON_WRITE.toJson(dataset));
     }
 
     /**
@@ -155,7 +155,7 @@ public class HLLApiClient
      */
     public List<UserInfoDataset> getUserList(boolean activeOnly, boolean inactiveOnly)
     {
-        return GSON_READ.fromJson(send("data.get.user-list", null, "active-only", activeOnly, "inactive-only", inactiveOnly),
+        return GSON_READ.fromJson(send("data.get.user.list", null, "active-only", activeOnly, "inactive-only", inactiveOnly),
                 new TypeToken<List<UserInfoDataset>>(){}.getType());
     }
 
@@ -197,6 +197,6 @@ public class HLLApiClient
      */
     public LocationDataset getUserLocation(String username)
     {
-        return GSON_READ.fromJson(send("data.get.user-location", null, "username", username), LocationDataset.class);
+        return GSON_READ.fromJson(send("data.get.user.location", null, "username", username), LocationDataset.class);
     }
 }
