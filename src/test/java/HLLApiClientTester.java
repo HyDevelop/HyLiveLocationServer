@@ -36,5 +36,8 @@ public class HLLApiClientTester
 
         System.out.println("\n------------------=[ Get User Location ]=------------------");
         System.out.println(client.getUserLocation("testUser"));
+
+        System.out.println("\n------------------=[ Get User Location History ]=------------------");
+        System.out.println(client.getUserLocationHistory("testUser"));
     }
 }
