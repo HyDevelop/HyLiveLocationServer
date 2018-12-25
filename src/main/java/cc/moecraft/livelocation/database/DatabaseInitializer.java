@@ -39,7 +39,7 @@ public class DatabaseInitializer
     public void initialize()
     {
         HLLConfig config = server.getConfig();
-        c3p0Plugin = new C3p0Plugin(config.getDbUrl(), config.getDbUsr(), config.getDbPwd());
+        c3p0Plugin = new C3p0Plugin(config.getDbUrl(), config.getDbUsr(), config.getDbPwd(), "com.mysql.cj.jdbc.Driver");
         c3p0Plugin.start();
         activeRecordPlugin = new ActiveRecordPlugin(c3p0Plugin);
         mapping(activeRecordPlugin);
