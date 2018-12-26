@@ -32,6 +32,14 @@ public class NodeGetUserList extends HLLApiNode
         return "data.get.user.list";
     }
 
+    /**
+     * 获取用户列表
+     *  - active-only (boolean):   是否只获取活跃用户
+     *  - inactive-only (boolean): 是否只获取不活跃用户
+     *
+     * @param access Api access.
+     * @return 用户列表
+     */
     @Override
     public String process(ApiAccess access)
     {
