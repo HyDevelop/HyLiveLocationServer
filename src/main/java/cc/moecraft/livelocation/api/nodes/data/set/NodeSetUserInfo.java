@@ -30,6 +30,13 @@ public class NodeSetUserInfo extends HLLApiNode
         return "data.set.user.info";
     }
 
+    /**
+     * 上传新的用户信息
+     *  - dataset (UserInfoDataset): 用户信息
+     *
+     * @param access Api access.
+     * @return 是否成功
+     */
     @Override
     public String process(ApiAccess access)
     {

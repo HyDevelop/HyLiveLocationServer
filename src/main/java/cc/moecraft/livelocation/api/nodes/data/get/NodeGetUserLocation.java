@@ -29,6 +29,13 @@ public class NodeGetUserLocation extends HLLApiNode
         return "data.get.user.location";
     }
 
+    /**
+     * 获取用户位置
+     *  - username (str): 用户名
+     *
+     * @param access Api access.
+     * @return 用户最后一次提交的位置
+     */
     @Override
     public String process(ApiAccess access)
     {

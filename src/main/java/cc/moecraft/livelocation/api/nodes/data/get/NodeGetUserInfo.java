@@ -29,6 +29,13 @@ public class NodeGetUserInfo extends HLLApiNode
         return "data.get.user.info";
     }
 
+    /**
+     * 获取用户信息
+     *  - username (str): 用户名
+     *
+     * @param access Api access.
+     * @return 用户信息
+     */
     @Override
     public String process(ApiAccess access)
     {
