@@ -221,7 +221,7 @@ public class HLLApiClient
      * @param end 结束时间
      * @return 位置历史 (按时间排序)
      */
-    public List<LocationDataset> getUserLocationHistory(String username, long start, long end)
+    public List<LocationDataset> getUserLocationHistory(String username, Long start, Long end)
     {
         return GSON_READ.fromJson(send("data.get.user.location.history", null,
                 "username", username,
