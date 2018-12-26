@@ -31,6 +31,13 @@ public class NodeSetLocationDataset extends HLLApiNode
         return "data.set.user.location";
     }
 
+    /**
+     * 上传新的位置信息
+     *  - dataset (LocationDataset): 位置信息
+     *
+     * @param access Api access.
+     * @return 是否成功
+     */
     @Override
     public String process(ApiAccess access)
     {
