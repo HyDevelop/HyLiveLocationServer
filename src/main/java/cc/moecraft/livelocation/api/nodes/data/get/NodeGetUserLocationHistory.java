@@ -34,6 +34,15 @@ public class NodeGetUserLocationHistory extends HLLApiNode
         return "data.get.user.location.history";
     }
 
+    /**
+     * 获取用户位置历史
+     *  - username (str): 用户名
+     *  - start (long):   起始日期 (ms)
+     *  - end (long):     结束日期 (ms)
+     *
+     * @param access Api access.
+     * @return 历史位置列表JSON
+     */
     @Override
     public String process(ApiAccess access)
     {
