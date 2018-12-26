@@ -11,7 +11,7 @@ import lombok.*;
  * @author Hykilpikonna
  */
 @Data
-@Builder
+@Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
 public class HLLConfig
