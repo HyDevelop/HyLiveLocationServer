@@ -75,6 +75,8 @@ public class HLLApiClient
             // 设置其他键值对
             for (int i = 0; i < kv.length; i += 2)
             {
+                if (kv[i] == null || kv[i + 1] == null) continue;
+
                 String key = kv[i].toString();
                 String val = kv[i + 1].toString();
                 connection.setRequestProperty("-enc-" + encrypt(key), encrypt(val));
