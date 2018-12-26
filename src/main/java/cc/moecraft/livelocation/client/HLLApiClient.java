@@ -252,7 +252,6 @@ public class HLLApiClient
      */
     public List<LocationDataset> getUserLocationHistory(String username)
     {
-        return GSON_READ.fromJson(send("data.get.user.location.history", null, "username", username),
-                new TypeToken<List<LocationDataset>>(){}.getType());
+        return getUserLocationHistory(username, (Long) null, null);
     }
 }
