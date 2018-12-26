@@ -13,6 +13,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Date;
 import java.util.List;
 
 import static cc.moecraft.livelocation.HLLConstants.GSON_READ;
@@ -228,6 +229,19 @@ public class HLLApiClient
                 "start", start,
                 "end", end
         ), new TypeToken<List<LocationDataset>>(){}.getType());
+    }
+
+    /**
+     * 获取用户位置历史
+     *
+     * @param username 用户名
+     * @param start 起始时间
+     * @param end 结束时间
+     * @return 位置历史 (按时间排序)
+     */
+    public List<LocationDataset> getUserLocationHistory(String username, Date start, Date end)
+    {
+        return getUserLocationHistory(username, start.getTime(), end.getTime());
     }
 
     /**
