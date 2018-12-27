@@ -203,8 +203,10 @@ public class HLLApiClient
      */
     public List<UserInfoDataset> getUserList(boolean activeOnly, boolean inactiveOnly)
     {
-        return GSON_READ.fromJson(send("data.get.user.list", null, "active-only", activeOnly, "inactive-only", inactiveOnly),
-                new TypeToken<List<UserInfoDataset>>(){}.getType());
+        return GSON_READ.fromJson(send("data.get.user.list", null,
+                "active-only", activeOnly,
+                "inactive-only", inactiveOnly
+        ), new TypeToken<List<UserInfoDataset>>(){}.getType());
     }
 
     /**
