@@ -279,4 +279,14 @@ public class HLLApiClient
     {
         return parseLong(send("misc.ping", timezone));
     }
+
+    /**
+     * 获取连接延迟
+     *
+     * @return 延迟 (ms)
+     */
+    public long ping()
+    {
+        return Calendar.getInstance(TimeZone.getTimeZone("UTC")).getTimeInMillis() - getServerTime("UTC");
+    }
 }
