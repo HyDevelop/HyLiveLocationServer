@@ -21,7 +21,7 @@ public class HLLApiClientTester
         System.out.println(client.ping() + " ms");
 
         System.out.println("\n-------------------=[ 上传位置 ]=--------------------");
-        System.out.println(client.sendSetLocationDataset(new LocationDataset("testUser", 47d, -12d))); // 返回 Success
+        System.out.println(client.sendLocationDataset(new LocationDataset("testUser", 47d, -12d))); // 返回 Success
 
         System.out.println("\n-----------------=[ 获取用户列表 ]=------------------");
         System.out.println(client.getUserListAll()); // 返回 ArrayList<UserInfoDataset>
