@@ -15,8 +15,10 @@ public class HLLApiClientTester
     public static void main(String[] args)
     {
         HLLApiClient client = new HLLApiClient("localhost:19486/api", new Encryptor("default-pw"));
+        client.ping();
 
-        System.out.println("");
+        System.out.println("\n-------------------=[ 获取延迟 ]=--------------------");
+        System.out.println(client.ping() + " ms");
 
         System.out.println("\n-------------------=[ 上传位置 ]=--------------------");
         System.out.println(client.sendSetLocationDataset(new LocationDataset("testUser", 47d, -12d))); // 返回 Success
