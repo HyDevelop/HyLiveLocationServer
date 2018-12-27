@@ -159,6 +159,18 @@ public class HLLApiClient
     }
 
     /**
+     * 更新用户信息
+     *
+     * @param username 用户名
+     * @param avatarUrl 头像URL
+     * @return 执行结果
+     */
+    public String sendUserInfo(String username, String avatarUrl)
+    {
+        return sendUserInfo(new UserInfoDataset(username, avatarUrl));
+    }
+
+    /**
      * 上传位置信息
      *
      * @param dataset 位置信息Dataset
