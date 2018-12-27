@@ -105,8 +105,10 @@ public class HLLApiClient
             }
 
             // 获取回复
-            return new BufferedReader(new InputStreamReader(connection.getInputStream()))
-                    .lines().collect(joining(lineSeparator()));
+            String response = encryptor.decrypt(new BufferedReader(new InputStreamReader(connection.getInputStream()))
+                    .lines().collect(joining(lineSeparator())));
+
+            return response;
         }
         catch (IOException e)
         {
