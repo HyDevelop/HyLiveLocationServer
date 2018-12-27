@@ -1,5 +1,6 @@
 package cc.moecraft.livelocation.client;
 
+import cc.moecraft.livelocation.HLLConfig;
 import cc.moecraft.livelocation.dataset.LocationDataset;
 import cc.moecraft.livelocation.dataset.UserInfoDataset;
 import cc.moecraft.livelocation.utils.UrlUtils;
@@ -253,5 +254,15 @@ public class HLLApiClient
     public List<LocationDataset> getUserLocationHistory(String username)
     {
         return getUserLocationHistory(username, (Long) null, null);
+    }
+
+    /**
+     * 获取服务器配置
+     *
+     * @return 服务器配置
+     */
+    public HLLConfig getServerConfig()
+    {
+        return GSON_READ.fromJson(send("data.get.server.config", null), HLLConfig.class);
     }
 }
