@@ -58,8 +58,8 @@ public class HyLiveLocationLauncher
         String dbUrl = options.getOrDefault("db-url", null);
         String dbUsr = options.getOrDefault("db-usr", null);
         String dbPwd = options.getOrDefault("db-pwd", null);
-        long activeTimeout = parseLong(options.getOrDefault("active-timeout", "" + new HLLConfig().getInactiveTimeout()));
-        long locationLogTime = parseLong(options.getOrDefault("location-log-time", "" + new HLLConfig().getLocationLogTime()));
+        long activeTimeout = parseLong(options.getOrDefault("active-timeout", "" + new HLLServerConfig().getInactiveTimeout()));
+        long locationLogTime = parseLong(options.getOrDefault("location-log-time", "" + new HLLServerConfig().getLocationLogTime()));
 
         // 从文件读取配置
         boolean hasFile = options.containsKey("file");
@@ -77,7 +77,7 @@ public class HyLiveLocationLauncher
                 if (dbUsr == null) dbUsr = "root";
                 if (dbPwd == null) dbPwd = "default-pw";
 
-                GSON_PRETTY.toJson(new HLLConfig(port, password, debug, dbUrl, dbUsr, dbPwd, activeTimeout, locationLogTime), writer);
+                GSON_PRETTY.toJson(new HLLServerConfig(port, password, debug, dbUrl, dbUsr, dbPwd, activeTimeout, locationLogTime), writer);
                 return "Export Success!";
             }
         }
@@ -86,7 +86,7 @@ public class HyLiveLocationLauncher
         if (hasFile)
         {
             File file = new File(options.get("file"));
-            HLLConfig config = GSON_READ.fromJson(FileUtils.readFileAsString(file), HLLConfig.class);
+            HLLServerConfig config = GSON_READ.fromJson(FileUtils.readFileAsString(file), HLLServerConfig.class);
             password = config.getPassword();
             port = config.getPort();
             debug = config.isDebug();
@@ -104,7 +104,7 @@ public class HyLiveLocationLauncher
         if (dbPwd == null) return "Database password is undefined";
 
         // 初始化服务器
-        server = new HyLiveLocationServer(new HLLConfig(port, password, debug, dbUrl, dbUsr, dbPwd, activeTimeout, locationLogTime));
+        server = new HyLiveLocationServer(new HLLServerConfig(port, password, debug, dbUrl, dbUsr, dbPwd, activeTimeout, locationLogTime));
 
         // Start操作, 启动服务器
         if (operation.equals("start"))

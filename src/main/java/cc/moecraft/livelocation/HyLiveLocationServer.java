@@ -27,7 +27,7 @@ import org.eclipse.jetty.server.Server;
 @Getter
 public class HyLiveLocationServer
 {
-    private final HLLConfig config;
+    private final HLLServerConfig config;
 
     private final LoggerInstanceManager lim = new LoggerInstanceManager(
             new ConsoleColoredEnv(ColorSupportLevel.FORCED),
@@ -44,7 +44,7 @@ public class HyLiveLocationServer
      *
      * @param config 配置
      */
-    public HyLiveLocationServer(HLLConfig config)
+    public HyLiveLocationServer(HLLServerConfig config)
     {
         this.config = config;
         this.logger = lim.getLoggerInstance("Main", config.isDebug());
