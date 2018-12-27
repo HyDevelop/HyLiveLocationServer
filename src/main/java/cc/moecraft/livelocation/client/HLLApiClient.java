@@ -297,6 +297,16 @@ public class HLLApiClient
     }
 
     /**
+     * 获取服务器时区的时间
+     *
+     * @return 时间 (ms)
+     */
+    public long getServerTime()
+    {
+        return getServerTime(null);
+    }
+
+    /**
      * 获取连接延迟
      *
      * @return 延迟 (ms)
