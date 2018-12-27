@@ -293,7 +293,7 @@ public class HLLApiClient
      */
     public long getServerTime(String timezone)
     {
-        return parseLong(send("misc.ping", timezone));
+        return parseLong(send("misc.ping", "timezone", timezone));
     }
 
     /**
