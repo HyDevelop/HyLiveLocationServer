@@ -71,23 +71,23 @@ public class ApiHandler extends AbstractHandler
                 logger.debug("Request received: {} : {}", node, content);
 
                 // Write response.
-                ResponseUtils.writeResponse(response, node.process(new ApiAccess(request, headers, content)));
+                writeResponse(response, node.process(new ApiAccess(request, headers, content)));
             }
             catch (RequestException e)
             {
                 // Write error.
-                ResponseUtils.writeResponse(response, "Error: " + e.getText());
+                writeResponse(response, "Error: " + e.getText());
             }
             catch (Throwable e)
             {
                 // Write error.
                 e.printStackTrace();
-                ResponseUtils.writeResponse(response, "Unpredicted Error: " + e.getMessage());
+                writeResponse(response, "Unpredicted Error: " + e.getMessage());
             }
         }
         else
         {
-            ResponseUtils.writeResponse(response, "What is the meaning of life");
+            writeResponse(response, "What is the meaning of life");
         }
     }
 
