@@ -108,6 +108,9 @@ public class HLLApiClient
             String response = encryptor.decrypt(new BufferedReader(new InputStreamReader(connection.getInputStream()))
                     .lines().collect(joining(lineSeparator())));
 
+            // 判断异常
+            if (response.toLowerCase().startsWith("error")) throw new RuntimeException(response);
+
             return response;
         }
         catch (IOException e)
