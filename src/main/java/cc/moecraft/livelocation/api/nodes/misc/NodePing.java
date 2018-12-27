@@ -32,7 +32,7 @@ public class NodePing implements ApiNode
     @Override
     public String process(ApiAccess access)
     {
-        String timezone = access.getHeaders().getOrDefault("timezone", "UTC");
-        return Calendar.getInstance(TimeZone.getTimeZone(timezone)).getTimeInMillis() + "";
+        if (!access.getHeaders().containsKey("timezone")) return System.currentTimeMillis() + "";
+        return Calendar.getInstance(TimeZone.getTimeZone(access.getHeaders().get("timezone"))).getTimeInMillis() + "";
     }
 }
