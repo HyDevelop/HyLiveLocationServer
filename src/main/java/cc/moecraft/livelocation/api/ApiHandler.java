@@ -129,4 +129,15 @@ public class ApiHandler extends AbstractHandler
         }
         return headers;
     }
+
+    /**
+     * 加密写入Response
+     *
+     * @param response ServletResponse对象
+     * @param text 明文回复
+     */
+    private void writeResponse(HttpServletResponse response, String text)
+    {
+        ResponseUtils.writeResponse(response, server.getEncryptor().encrypt(text));
+    }
 }
