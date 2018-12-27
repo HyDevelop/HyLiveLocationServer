@@ -14,7 +14,7 @@ import lombok.*;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class HLLConfig
+public class HLLServerConfig
 {
     // 服务器配置
     private int port;

@@ -1,6 +1,6 @@
 package cc.moecraft.livelocation.database;
 
-import cc.moecraft.livelocation.HLLConfig;
+import cc.moecraft.livelocation.HLLServerConfig;
 import cc.moecraft.livelocation.HyLiveLocationServer;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
@@ -38,7 +38,7 @@ public class DatabaseInitializer
      */
     public void initialize()
     {
-        HLLConfig config = server.getConfig();
+        HLLServerConfig config = server.getConfig();
         c3p0Plugin = new C3p0Plugin(config.getDbUrl(), config.getDbUsr(), config.getDbPwd(), "com.mysql.cj.jdbc.Driver");
         c3p0Plugin.start();
         activeRecordPlugin = new ActiveRecordPlugin(c3p0Plugin);
