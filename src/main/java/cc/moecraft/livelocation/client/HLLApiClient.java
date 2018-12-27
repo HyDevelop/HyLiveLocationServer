@@ -182,6 +182,19 @@ public class HLLApiClient
     }
 
     /**
+     * 上传位置信息
+     *
+     * @param username 用户名
+     * @param lat 纬度
+     * @param lon 经度
+     * @return 执行结果
+     */
+    public String sendLocationDataset(String username, Double lat, Double lon)
+    {
+        return sendLocationDataset(new LocationDataset(username, lat, lon));
+    }
+
+    /**
      * 获取用户列表
      *
      * @param activeOnly 是否只记录活跃用户
