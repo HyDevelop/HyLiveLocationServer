@@ -14,11 +14,14 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import static cc.moecraft.livelocation.HLLConstants.GSON_READ;
 import static cc.moecraft.livelocation.HLLConstants.GSON_WRITE;
+import static java.lang.Long.*;
 import static java.lang.System.lineSeparator;
 import static java.util.stream.Collectors.joining;
 
@@ -264,5 +267,16 @@ public class HLLApiClient
     public HLLServerConfig getServerConfig()
     {
         return GSON_READ.fromJson(send("data.get.server.config", null), HLLServerConfig.class);
+    }
+
+    /**
+     * 获取服务器时间
+     *
+     * @param timezone 时区
+     * @return 时间 (ms)
+     */
+    public long getServerTime(String timezone)
+    {
+        return parseLong(send("misc.ping", timezone));
     }
 }
