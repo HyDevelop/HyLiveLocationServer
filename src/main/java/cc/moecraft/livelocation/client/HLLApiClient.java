@@ -109,7 +109,7 @@ public class HLLApiClient
                     .lines().collect(joining(lineSeparator())));
 
             // 判断异常
-            if (response.toLowerCase().startsWith("error")) throw new RuntimeException(response);
+            if (response.toLowerCase().startsWith("error")) throw new ApiException(response);
 
             return response;
         }
@@ -123,6 +123,17 @@ public class HLLApiClient
     private String encrypt(String text)
     {
         return encryptor.encrypt(text);
+    }
+
+    /**
+     * API访问异常
+     */
+    public static class ApiException extends RuntimeException
+    {
+        public ApiException(String message)
+        {
+            super(message);
+        }
     }
 
     /**
