@@ -33,7 +33,7 @@ import static java.util.stream.Collectors.joining;
  *
  * @author Hykilpikonna
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class HLLApiClient
 {
     private final URL url;
