@@ -4,6 +4,7 @@ import cc.moecraft.livelocation.api.ApiHandler;
 import cc.moecraft.livelocation.api.nodes.data.get.*;
 import cc.moecraft.livelocation.api.nodes.data.set.NodeSetLocationDataset;
 import cc.moecraft.livelocation.api.nodes.data.set.NodeSetUserInfo;
+import cc.moecraft.livelocation.api.nodes.misc.NodePing;
 import cc.moecraft.livelocation.api.nodes.misc.NodeTest;
 import cc.moecraft.livelocation.database.DatabaseInitializer;
 import cc.moecraft.livelocation.utils.MiscUtils;
@@ -68,6 +69,9 @@ public class HyLiveLocationServer
         // 创建Api监听器对象
         ApiHandler handler = new ApiHandler(this);
         handler.getManager().register(new NodeTest()
+                // 测试
+                , new NodePing()
+
                 // 上传数据
                 , new NodeSetLocationDataset(this)
                 , new NodeSetUserInfo(this)
