@@ -303,6 +303,10 @@ public class HLLApiClient
      */
     public long ping()
     {
-        return Calendar.getInstance(TimeZone.getTimeZone("UTC")).getTimeInMillis() - getServerTime("UTC");
+        // 这个地方很奇怪...
+        // 无论怎样写都是负数
+        // Fixed: 要先获取服务器时间然后再获取本地时间
+        long serverTime = getServerTime("UTC");
+        return Calendar.getInstance(TimeZone.getTimeZone("UTC")).getTimeInMillis() - serverTime;
     }
 }
