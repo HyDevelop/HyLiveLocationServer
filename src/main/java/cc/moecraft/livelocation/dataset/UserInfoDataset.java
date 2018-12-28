@@ -16,8 +16,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserInfoDataset
 {
+    /** 用户名 */
     private final String username;
+
+    /** 头像URL */
     private final String avatarUrl;
+
+    /** 最后活跃时间 (获取) */
     private Long lastActive = null;
 
     /**
