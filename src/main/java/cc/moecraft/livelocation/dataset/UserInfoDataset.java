@@ -21,6 +21,13 @@ public class UserInfoDataset
     /** 最后活跃时间 (获取) */
     private Long lastActive = null;
 
+    /**
+     * 创建一个用户信息数据组
+     *
+     * @param username 用户名
+     * @param avatarUrl 头像URL
+     * @param lastActive 最后活跃时间
+     */
     public UserInfoDataset(String username, String avatarUrl, Long lastActive)
     {
         this.username = username;
@@ -28,6 +35,12 @@ public class UserInfoDataset
         this.lastActive = lastActive;
     }
 
+    /**
+     * 创建一个用户信息数据组
+     *
+     * @param username 用户名
+     * @param avatarUrl 头像URL
+     */
     public UserInfoDataset(String username, String avatarUrl)
     {
         this.username = username;

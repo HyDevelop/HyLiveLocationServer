@@ -32,7 +32,14 @@ public class LocationDataset implements Comparable<LocationDataset>
     private Long submitTime = null;
 
     /**
-     * 从数据库Model对象创建一个Dataset对象
+     * 创建一个位置数据组
+     *
+     * @param username 用户名
+     * @param latitude 纬度
+     * @param longitude 经度
+     * @param submitIp 提交IP
+     * @param submitTime 提交时间
+     */
     public LocationDataset(String username, Double latitude, Double longitude, String submitIp, Long submitTime)
     {
         this.username = username;
@@ -42,6 +49,13 @@ public class LocationDataset implements Comparable<LocationDataset>
         this.submitTime = submitTime;
     }
 
+    /**
+     * 创建一个位置数据组
+     *
+     * @param username 用户名
+     * @param latitude 纬度
+     * @param longitude 经度
+     */
     public LocationDataset(String username, Double latitude, Double longitude)
     {
         this.username = username;
@@ -49,6 +63,8 @@ public class LocationDataset implements Comparable<LocationDataset>
         this.longitude = longitude;
     }
 
+    /**
+     * 从数据库Model对象创建一个位置数据组对象
      *
      * @param encryptor 解密工具
      * @param dataLatest 位置信息
@@ -62,7 +78,7 @@ public class LocationDataset implements Comparable<LocationDataset>
     }
 
     /**
-     * 从数据库Model对象创建一个Dataset对象
+     * 从数据库Model对象创建一个位置数据组对象
      *
      * @param encryptor 解密工具
      * @param dataLog 位置信息
