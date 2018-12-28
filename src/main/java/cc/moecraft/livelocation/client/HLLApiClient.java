@@ -26,12 +26,10 @@ import static java.lang.System.lineSeparator;
 import static java.util.stream.Collectors.joining;
 
 /**
- * 此类由 Hykilpikonna 在 2018/12/24 创建!
- * Created by Hykilpikonna on 2018/12/24!
- * Github: https://github.com/hykilpikonna
- * QQ: admin@moecraft.cc -OR- 871674895
+ * HyLiveLocation API客户端
  *
- * @author Hykilpikonna
+ * @author Hykilpikonna (https://github.com/hykilpikonna)
+ * @since 2018-12-24
  */
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class HLLApiClient
