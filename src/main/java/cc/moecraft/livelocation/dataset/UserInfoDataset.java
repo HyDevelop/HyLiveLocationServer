@@ -1,9 +1,7 @@
 package cc.moecraft.livelocation.dataset;
 
 import cc.moecraft.livelocation.database.model.UserInfo;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 /**
  * HyLiveLocation 用户信息数据组
@@ -12,8 +10,6 @@ import lombok.RequiredArgsConstructor;
  * @since 2018-12-24
  */
 @Data
-@AllArgsConstructor
-@RequiredArgsConstructor
 public class UserInfoDataset
 {
     /** 用户名 */
@@ -24,6 +20,19 @@ public class UserInfoDataset
 
     /** 最后活跃时间 (获取) */
     private Long lastActive = null;
+
+    public UserInfoDataset(String username, String avatarUrl, Long lastActive)
+    {
+        this.username = username;
+        this.avatarUrl = avatarUrl;
+        this.lastActive = lastActive;
+    }
+
+    public UserInfoDataset(String username, String avatarUrl)
+    {
+        this.username = username;
+        this.avatarUrl = avatarUrl;
+    }
 
     /**
      * 从数据库Model对象创建一个Dataset对象
