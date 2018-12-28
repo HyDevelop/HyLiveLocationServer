@@ -39,9 +39,10 @@ public class HLLApiClient
     private final String KEYWORD_NODE;
 
     /**
-     * Create an Api client object.
+     * 创建一个API客户端对象
      *
-     * @param url URL (e.g. "http://livelocation.hydev.pw/api")
+     * @param url 服务器URL (e.g. "http://livelocation.hydev.pw/api")
+     * @param encryptor 加密工具
      */
     public HLLApiClient(String url, Encryptor encryptor)
     {
