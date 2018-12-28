@@ -20,10 +20,19 @@ import static java.lang.Double.parseDouble;
 @RequiredArgsConstructor
 public class LocationDataset implements Comparable<LocationDataset>
 {
+    /** 用户名 */
     private final String username;
-    private final Double latitude; // 纬度
-    private final Double longitude; // 经度
+
+    /** 纬度 */
+    private final Double latitude;
+
+    /** 经度 */
+    private final Double longitude;
+
+    /** 提交IP (获取) */
     private String submitIp = null;
+
+    /** 提交时间 (获取) */
     private Long submitTime = null;
 
     /**
