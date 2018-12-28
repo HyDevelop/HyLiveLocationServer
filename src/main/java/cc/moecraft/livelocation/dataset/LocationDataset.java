@@ -3,9 +3,7 @@ package cc.moecraft.livelocation.dataset;
 import cc.moecraft.livelocation.database.model.DataLatest;
 import cc.moecraft.livelocation.database.model.DataLog;
 import cc.moecraft.livelocation.utils.encryption.Encryptor;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 import static java.lang.Double.parseDouble;
 
@@ -16,8 +14,6 @@ import static java.lang.Double.parseDouble;
  * @since 2018-12-24
  */
 @Data
-@AllArgsConstructor
-@RequiredArgsConstructor
 public class LocationDataset implements Comparable<LocationDataset>
 {
     /** 用户名 */
@@ -37,6 +33,22 @@ public class LocationDataset implements Comparable<LocationDataset>
 
     /**
      * 从数据库Model对象创建一个Dataset对象
+    public LocationDataset(String username, Double latitude, Double longitude, String submitIp, Long submitTime)
+    {
+        this.username = username;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.submitIp = submitIp;
+        this.submitTime = submitTime;
+    }
+
+    public LocationDataset(String username, Double latitude, Double longitude)
+    {
+        this.username = username;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
      *
      * @param encryptor 解密工具
      * @param dataLatest 位置信息
