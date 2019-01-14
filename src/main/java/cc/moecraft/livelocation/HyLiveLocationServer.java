@@ -60,6 +60,8 @@ public class HyLiveLocationServer
      */
     public void start() throws Exception
     {
+        logger.log("服务器正在启动... (端口: {})", config.getPort());
+
         // 去掉Log
         if (!config.isDebug()) MiscUtils.disableLogging();
 
